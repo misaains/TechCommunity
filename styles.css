@@ -1,101 +1,275 @@
-/* Базовые стили */
+/* ========================================
+   MOBILE-FIRST БАЗОВЫЕ СТИЛИ
+======================================== */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent; /* Убирает синюю подсветку на iOS */
+}
+
+:root {
+    /* Цвета */
+    --primary-color: #2196F3;
+    --secondary-color: #764ba2;
+    --text-primary: #333;
+    --text-secondary: #666;
+    --white-color: #fff;
+    --bg-light: #f5f5f5;
+    
+    /* Отступы для мобильных */
+    --spacing-xs: 8px;
+    --spacing-sm: 12px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    
+    /* Размеры шрифтов для мобильных (оптимальные для чтения) */
+    --font-xs: 12px;
+    --font-sm: 14px;
+    --font-base: 16px;
+    --font-lg: 18px;
+    --font-xl: 20px;
+    --font-2xl: 24px;
+    --font-3xl: 28px;
+    
+    /* Тени и эффекты */
+    --shadow: 0 2px 8px rgba(0,0,0,0.1);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.15);
+    --transition: all 0.3s ease;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-size: var(--font-base); /* 16px - оптимально для чтения на мобильных */
+    line-height: 1.6; /* Увеличенная высота строки для лучшей читаемости */
+    color: var(--text-primary);
+    background: var(--bg-light);
+    padding-bottom: 70px; /* Отступ для нижней навигации */
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased; /* Сглаживание шрифтов на iOS */
+    -moz-osx-font-smoothing: grayscale;
 }
 
-.container {
-    text-align: center;
-    background: white;
-    padding: 60px 80px;
-    border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+/* Улучшенная типографика для мобильных */
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.3;
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-primary);
 }
 
 h1 {
-    font-size: 48px;
-    color: #333;
-    margin-bottom: 20px;
+    font-size: var(--font-3xl); /* 28px */
+}
+
+h2 {
+    font-size: var(--font-2xl); /* 24px */
+}
+
+h3 {
+    font-size: var(--font-xl); /* 20px */
 }
 
 p {
-    font-size: 18px;
-    color: #666;
+    font-size: var(--font-base); /* 16px */
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-md);
+}
+
+/* Оптимальные размеры для касаний (минимум 44x44px по гайдам Apple) */
+button, .btn, a.button {
+    min-height: 44px;
+    min-width: 44px;
+    font-size: var(--font-base);
+    padding: var(--spacing-sm) var(--spacing-md);
 }
 
 /* ========================================
-   ШАПКА
+   ШАПКА ПРИЛОЖЕНИЯ (MOBILE-OPTIMIZED)
 ======================================== */
 
-.header {
+.app-header {
     background: linear-gradient(135deg, var(--primary-color), #1976D2);
     color: var(--white-color);
-    padding: 15px 0;
-    box-shadow: var(--shadow);
+    padding: var(--spacing-md) var(--spacing-md);
+    box-shadow: var(--shadow-md);
     position: sticky;
     top: 0;
     z-index: 100;
 }
 
-.header .container {
+.header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
+    max-width: 100%;
 }
 
-.logo {
-    font-size: 24px;
-    font-weight: bold;
+.app-title {
+    font-size: var(--font-xl); /* 20px - читаемо на мобильных */
+    font-weight: 600;
     margin: 0;
-}
-
-.nav {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.nav-btn {
-    background: rgba(255, 255, 255, 0.1);
     color: var(--white-color);
-    border: 2px solid transparent;
-    padding: 10px 20px;
-    border-radius: 25px;
+}
+
+.menu-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: var(--white-color);
+    font-size: var(--font-2xl); /* 24px - легко нажать */
+    padding: var(--spacing-sm);
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: var(--transition);
 }
 
-.nav-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
-}
-
-.nav-btn.active {
-    background: var(--white-color);
-    color: var(--primary-color);
+.menu-btn:active {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(0.95);
 }
 
 /* ========================================
    ОСНОВНОЙ КОНТЕНТ
 ======================================== */
 
-.main {
-    min-height: calc(100vh - 70px);
-    padding: 30px 0;
+.app-main {
+    padding: var(--spacing-lg) var(--spacing-md);
+    max-width: 100%;
 }
 
+.welcome-section {
+    text-align: center;
+    padding: var(--spacing-xl) var(--spacing-md);
+    background: var(--white-color);
+    border-radius: 16px;
+    margin-bottom: var(--spacing-lg);
+    box-shadow: var(--shadow);
+}
+
+.welcome-section h2 {
+    font-size: var(--font-2xl); /* 24px */
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-sm);
+}
+
+.welcome-section p {
+    font-size: var(--font-base); /* 16px - оптимально для чтения */
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* ========================================
+   КАРТОЧКИ (ОПТИМИЗИРОВАНО ДЛЯ МОБИЛЬНЫХ)
+======================================== */
+
+.cards-section {
+    display: grid;
+    gap: var(--spacing-md);
+    grid-template-columns: 1fr; /* Одна колонка на мобильных */
+}
+
+.card {
+    background: var(--white-color);
+    padding: var(--spacing-lg);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.card:active {
+    transform: scale(0.98);
+    box-shadow: var(--shadow-md);
+}
+
+.card-icon {
+    font-size: 48px; /* Большие иконки для визуального эффекта */
+    margin-bottom: var(--spacing-md);
+}
+
+.card h3 {
+    font-size: var(--font-xl); /* 20px */
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.card p {
+    font-size: var(--font-base); /* 16px */
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ========================================
+   НИЖНЯЯ НАВИГАЦИЯ (МОБИЛЬНОЕ ПРИЛОЖЕНИЕ)
+======================================== */
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--white-color);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: var(--spacing-xs) 0;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    z-index: 100;
+}
+
+.nav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    background: none;
+    border: none;
+    padding: var(--spacing-xs);
+    cursor: pointer;
+    transition: var(--transition);
+    min-height: 56px; /* Оптимальная высота для касаний */
+}
+
+.nav-item:active {
+    transform: scale(0.95);
+}
+
+.nav-icon {
+    font-size: var(--font-2xl); /* 24px - хорошо видно */
+}
+
+.nav-label {
+    font-size: var(--font-xs); /* 12px */
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.nav-item.active .nav-icon {
+    transform: scale(1.1);
+}
+
+.nav-item.active .nav-label {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* ========================================
+   ДОПОЛНИТЕЛЬНЫЕ УТИЛИТЫ ДЛЯ МОБИЛЬНЫХ
+======================================== */
+
+/* Страницы */
 .page {
     display: none;
 }
@@ -675,61 +849,167 @@ p {
 }
 
 /* ========================================
-   АДАПТИВНОСТЬ
+   АДАПТИВНОСТЬ ДЛЯ РАЗНЫХ УСТРОЙСТВ
 ======================================== */
 
-@media (max-width: 768px) {
-    .header .container {
-        flex-direction: column;
-        gap: 15px;
+/* Маленькие телефоны (до 375px) */
+@media (max-width: 375px) {
+    :root {
+        --font-xs: 11px;
+        --font-sm: 13px;
+        --font-base: 15px;
+        --font-lg: 17px;
+        --font-xl: 19px;
+        --font-2xl: 22px;
+        --font-3xl: 26px;
+        
+        --spacing-xs: 6px;
+        --spacing-sm: 10px;
+        --spacing-md: 14px;
+        --spacing-lg: 20px;
     }
-
-    .nav {
-        width: 100%;
-        justify-content: center;
+    
+    .app-main {
+        padding: var(--spacing-md) var(--spacing-sm);
     }
-
-    .hero h2 {
-        font-size: 28px;
+    
+    .card {
+        padding: var(--spacing-md);
     }
+}
 
-    .hero p {
-        font-size: 16px;
+/* Телефоны (376px - 767px) - ОСНОВНОЙ РАЗМЕР */
+@media (min-width: 376px) and (max-width: 767px) {
+    .cards-section {
+        grid-template-columns: 1fr; /* Одна колонка */
     }
+}
 
-    .page-header {
-        flex-direction: column;
-        align-items: flex-start;
+/* Планшеты (768px - 1024px) */
+@media (min-width: 768px) {
+    :root {
+        --font-xs: 13px;
+        --font-sm: 15px;
+        --font-base: 17px;
+        --font-lg: 20px;
+        --font-xl: 22px;
+        --font-2xl: 26px;
+        --font-3xl: 32px;
     }
-
-    .filters {
-        flex-direction: column;
+    
+    .app-main {
+        max-width: 720px;
+        margin: 0 auto;
     }
-
-    .search-input {
-        width: 100%;
+    
+    .cards-section {
+        grid-template-columns: repeat(2, 1fr); /* Две колонки на планшете */
     }
-
-    .communities-grid {
-        grid-template-columns: 1fr;
+    
+    .bottom-nav {
+        max-width: 720px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 20px 20px 0 0;
     }
+}
 
-    .profile-header {
-        flex-direction: column;
-        text-align: center;
+/* Десктоп (больше 1024px) */
+@media (min-width: 1025px) {
+    body {
+        padding-bottom: 0; /* Убираем отступ для нижней навигации */
     }
+    
+    .app-main {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: var(--spacing-xl);
+    }
+    
+    .cards-section {
+        grid-template-columns: repeat(3, 1fr); /* Три колонки на десктопе */
+    }
+    
+    .bottom-nav {
+        display: none; /* Можно скрыть или адаптировать для десктопа */
+    }
+    
+    /* Добавляем боковую навигацию для десктопа */
+    .app-header {
+        padding: var(--spacing-lg) var(--spacing-xl);
+    }
+}
 
-    .feature-grid {
-        grid-template-columns: 1fr;
+/* Landscape ориентация для телефонов */
+@media (max-height: 500px) and (orientation: landscape) {
+    .welcome-section {
+        padding: var(--spacing-md);
+    }
+    
+    .app-main {
+        padding: var(--spacing-md);
+    }
+    
+    .card-icon {
+        font-size: 36px;
+    }
+}
+
+/* Оптимизация для устройств с высокой плотностью пикселей */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
     }
 }
 
 /* ========================================
-   УТИЛИТЫ
+   УТИЛИТЫ ДЛЯ МОБИЛЬНЫХ
 ======================================== */
 
 .text-center {
     text-align: center;
+}
+
+/* Скрытие элементов на мобильных */
+.hide-mobile {
+    display: none !important;
+}
+
+@media (min-width: 768px) {
+    .hide-mobile {
+        display: block !important;
+    }
+    
+    .hide-desktop {
+        display: none !important;
+    }
+}
+
+/* Отступы для безопасной зоны (iPhone X и новее) */
+@supports (padding: max(0px)) {
+    body {
+        padding-left: max(0px, env(safe-area-inset-left));
+        padding-right: max(0px, env(safe-area-inset-right));
+    }
+    
+    .bottom-nav {
+        padding-bottom: max(var(--spacing-xs), env(safe-area-inset-bottom));
+    }
+    
+    .app-header {
+        padding-top: max(var(--spacing-md), env(safe-area-inset-top));
+    }
+}
+
+/* Улучшенная прокрутка на iOS */
+.app-main {
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Предотвращение зума при фокусе на input на iOS */
+input, textarea, select {
+    font-size: 16px !important; /* iOS зумит если меньше 16px */
 }
 
 .mt-20 {
