@@ -2,15 +2,73 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#2196F3">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
     <title>TechCommunity</title>
+    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="styles.css">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
 </head>
 <body>
-    <div class="container">
-        <h1>Hello World!</h1>
-        <p>Добро пожаловать в ваш первый проект!</p>
-    </div>
+    <!-- Header/Navigation -->
+    <header class="app-header">
+        <div class="header-content">
+            <h1 class="app-title">TechCommunity</h1>
+            <button class="menu-btn" id="menuBtn">☰</button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="app-main">
+        <section class="welcome-section">
+            <h2>Добро пожаловать!</h2>
+            <p>Платформа для объединения предприятий, талантов и инноваций</p>
+        </section>
+
+        <!-- Пример карточек (замените на свой контент) -->
+        <section class="cards-section">
+            <div class="card">
+                <div class="card-icon">🏢</div>
+                <h3>Предприятия</h3>
+                <p>Найдите партнеров для инноваций</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">👥</div>
+                <h3>Сообщества</h3>
+                <p>Объединяйтесь с единомышленниками</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">💡</div>
+                <h3>Инновации</h3>
+                <p>Создавайте будущее вместе</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Bottom Navigation (типичная для мобильных приложений) -->
+    <nav class="bottom-nav">
+        <button class="nav-item active">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Главная</span>
+        </button>
+        <button class="nav-item">
+            <span class="nav-icon">🔍</span>
+            <span class="nav-label">Поиск</span>
+        </button>
+        <button class="nav-item">
+            <span class="nav-icon">➕</span>
+            <span class="nav-label">Создать</span>
+        </button>
+        <button class="nav-item">
+            <span class="nav-icon">👤</span>
+            <span class="nav-label">Профиль</span>
+        </button>
+    </nav>
     
     <script src="app.js"></script>
 </body>
