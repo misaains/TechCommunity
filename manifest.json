@@ -1,11 +1,11 @@
 {
-  "name": "TechCommunity - Платформа технологических сообществ",
+  "name": "TechCommunity - Freelance Platform",
   "short_name": "TechCommunity",
-  "description": "Платформа для объединения предприятий, талантов и инноваций",
+  "description": "Платформа для объединения предприятий, талантов и инноваций. Professional freelance platform for job seekers and employers",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#2196F3",
-  "theme_color": "#2196F3",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
   "orientation": "portrait-primary",
   "icons": [
     {

@@ -1,77 +1,255 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#2196F3">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    
-    <title>TechCommunity</title>
-    <link rel="manifest" href="manifest.json">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#000000">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="description" content="TechCommunity - Платформа для объединения предприятий, талантов и инноваций">
+  
+  <title>TechCommunity - Freelance Platform</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
 </head>
 <body>
-    <!-- Header/Navigation -->
-    <header class="app-header">
-        <div class="header-content">
-            <h1 class="app-title">TechCommunity</h1>
-            <button class="menu-btn" id="menuBtn">☰</button>
+  <!-- Header Profile Section -->
+  <header class="profile-header">
+    <div class="container">
+      <div class="profile-info">
+        <img src="icons/icon-192.png" alt="Profile" class="profile-avatar">
+        <div class="profile-details">
+          <h1 class="profile-name">TechCommunity</h1>
+          <p class="profile-status">12 843 подписчика</p>
+          <p class="profile-bio">Платформа для объединения предприятий, талантов и инноваций. Фрилансеры, специалисты и компании работают над интересными проектами и развиваются вместе с сообществом.</p>
         </div>
-    </header>
+      </div>
+    </div>
+  </header>
 
-    <!-- Main Content -->
-    <main class="app-main">
-        <section class="welcome-section">
-            <h2>Добро пожаловать!</h2>
-            <p>Платформа для объединения предприятий, талантов и инноваций</p>
-            <p>Никита, Кирилл, Боря, Юля, Маша милашки сидят серьезные капец</p>
-
-        </section>
-
-        <!-- Пример карточек (замените на свой контент) -->
-        <section class="cards-section">
-            <div class="card">
-                <div class="card-icon">🏢</div>
-                <h3>Предприятия</h3>
-                <p>Найдите партнеров для инноваций</p>
+  <main>
+    <!-- Active Jobs Section -->
+    <section class="jobs-section">
+      <div class="container">
+        <h2 class="section-title">Актуальные вакансии</h2>
+        <div class="jobs-scroll">
+          <div class="job-card">
+            <h3 class="job-title">Разработка мобильного приложения</h3>
+            <p class="job-description">Создание мобильного приложения для iOS и Android с использованием современных технологий</p>
+            <div class="job-tags">
+              <span class="tag tag-level">Средний</span>
+              <span class="tag tag-verified">✓ Проверен</span>
             </div>
-            
-            <div class="card">
-                <div class="card-icon">👥</div>
-                <h3>Сообщества</h3>
-                <p>Объединяйтесь с единомышленниками</p>
+            <div class="job-meta">
+              <div class="job-skills">
+                <span class="skill">Python</span>
+                <span class="skill">Laravel</span>
+                <span class="skill">HTML/CSS</span>
+              </div>
+              <p class="job-date">📅 25-31 октября 2025</p>
             </div>
-            
-            <div class="card">
-                <div class="card-icon">💡</div>
-                <h3>Инновации</h3>
-                <p>Создавайте будущее вместе</p>
-            </div>
-        </section>
-    </main>
+            <button class="btn-primary">Подать заявку</button>
+          </div>
 
-    <!-- Bottom Navigation (типичная для мобильных приложений) -->
-    <nav class="bottom-nav">
-        <button class="nav-item active">
-            <span class="nav-icon">🏠</span>
-            <span class="nav-label">Главная</span>
-        </button>
-        <button class="nav-item">
-            <span class="nav-icon">🔍</span>
-            <span class="nav-label">Поиск</span>
-        </button>
-        <button class="nav-item">
-            <span class="nav-icon">➕</span>
-            <span class="nav-label">Создать</span>
-        </button>
-        <button class="nav-item">
-            <span class="nav-icon">👤</span>
-            <span class="nav-label">Профиль</span>
-        </button>
-    </nav>
-    
-    <script src="app.js"></script>
+          <div class="job-card">
+            <h3 class="job-title">Редизайн корпоративного сайта</h3>
+            <p class="job-description">Обновление дизайна главной страницы и создание адаптивной версии</p>
+            <div class="job-tags">
+              <span class="tag tag-level">Простой</span>
+              <span class="tag tag-verified">✓ Проверен</span>
+            </div>
+            <div class="job-meta">
+              <div class="job-skills">
+                <span class="skill">Figma</span>
+                <span class="skill">UI/UX</span>
+                <span class="skill">HTML/CSS</span>
+              </div>
+              <p class="job-date">📅 25-31 октября 2025</p>
+            </div>
+            <button class="btn-primary">Подать заявку</button>
+          </div>
+
+          <div class="job-card">
+            <h3 class="job-title">Анализ данных пользователей</h3>
+            <p class="job-description">Исследование поведения пользователей и предоставление рекомендаций по оптимизации</p>
+            <div class="job-tags">
+              <span class="tag tag-level">Сложный</span>
+              <span class="tag tag-verified">✓ Проверен</span>
+            </div>
+            <div class="job-meta">
+              <div class="job-skills">
+                <span class="skill">Python</span>
+                <span class="skill">Pandas</span>
+                <span class="skill">SQL</span>
+              </div>
+              <p class="job-date">📅 25-31 октября 2025</p>
+            </div>
+            <button class="btn-primary">Подать заявку</button>
+          </div>
+
+          <div class="job-card">
+            <h3 class="job-title">Настройка CI/CD pipeline</h3>
+            <p class="job-description">Автоматизация процесса деплоя и интеграция всех микросервисов</p>
+            <div class="job-tags">
+              <span class="tag tag-level">Сложный</span>
+              <span class="tag tag-verified">✓ Проверен</span>
+            </div>
+            <div class="job-meta">
+              <div class="job-skills">
+                <span class="skill">Docker</span>
+                <span class="skill">Kubernetes</span>
+                <span class="skill">Jenkins</span>
+              </div>
+              <p class="job-date">📅 25-31 октября 2025</p>
+            </div>
+            <button class="btn-primary">Подать заявку</button>
+          </div>
+
+          <div class="job-card">
+            <h3 class="job-title">Создание чат-бота</h3>
+            <p class="job-description">Разработка Telegram-бота для автоматизации поддержки</p>
+            <div class="job-tags">
+              <span class="tag tag-level">Средний</span>
+              <span class="tag tag-verified">✓ Проверен</span>
+            </div>
+            <div class="job-meta">
+              <div class="job-skills">
+                <span class="skill">Python</span>
+                <span class="skill">Telegram API</span>
+                <span class="skill">NLP</span>
+              </div>
+              <p class="job-date">📅 25-31 октября 2025</p>
+            </div>
+            <button class="btn-primary">Подать заявку</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- News Feed Section -->
+    <section class="feed-section">
+      <div class="container">
+        <h2 class="section-title">Лента новостей</h2>
+
+        <!-- Post 1 -->
+        <article class="post-card">
+          <div class="post-header">
+            <img src="icons/icon-192.png" alt="Anna Smirnova" class="post-avatar">
+            <div class="post-author-info">
+              <h3 class="post-author">Анна Смирнова</h3>
+              <p class="post-time">5 минут назад</p>
+            </div>
+          </div>
+          <p class="post-content">Отличные новости! Наша команда завершила проект на месяц раньше срока. Спасибо всем участникам за продуктивную работу! 🚀</p>
+          <div class="post-actions">
+            <button class="action-btn">❤️ 142</button>
+            <button class="action-btn">💬 18</button>
+            <button class="action-btn">🔗</button>
+          </div>
+        </article>
+
+        <!-- Post 2 -->
+        <article class="post-card">
+          <div class="post-header">
+            <img src="icons/icon-192.png" alt="Dmitriy Petrov" class="post-avatar">
+            <div class="post-author-info">
+              <h3 class="post-author">Дмитрий Петров</h3>
+              <p class="post-time">2 часа назад</p>
+            </div>
+          </div>
+          <p class="post-content">Подводю итоги: недавно внедрили новую методологию разработки. Производительность выросла на 40%. Всем советую - пишите в комментариях, расскажу подробнее.</p>
+          <div class="post-actions">
+            <button class="action-btn">❤️ 89</button>
+            <button class="action-btn">💬 34</button>
+            <button class="action-btn">�</button>
+          </div>
+        </article>
+
+        <!-- Post 3 -->
+        <article class="post-card">
+          <div class="post-header">
+            <img src="icons/icon-192.png" alt="Elena Kuznetsova" class="post-avatar">
+            <div class="post-author-info">
+              <h3 class="post-author">Елена Кузнецова</h3>
+              <p class="post-time">5 часов назад</p>
+            </div>
+          </div>
+          <p class="post-content">Новая UI/UX дизайнера для участия в стартап-проекте. Работа удаленная, гибкий график. Подробности в личных сообщениях!</p>
+          <div class="post-actions">
+            <button class="action-btn">❤️ 56</button>
+            <button class="action-btn">💬 12</button>
+            <button class="action-btn">🔗</button>
+          </div>
+        </article>
+
+        <!-- Post 4 -->
+        <article class="post-card">
+          <div class="post-header">
+            <img src="icons/icon-192.png" alt="Mikhail Ivanov" class="post-avatar">
+            <div class="post-author-info">
+              <h3 class="post-author">Михаил Иванов</h3>
+              <p class="post-time">1 день назад</p>
+            </div>
+          </div>
+          <p class="post-content">Завтра проводим вебинар по теме "Современные подходы к фронтенд-разработке". Начало в 19:30 МСК. Регистрация по ссылке в профиле.</p>
+          <div class="post-actions">
+            <button class="action-btn">❤️ 203</button>
+            <button class="action-btn">💬 45</button>
+            <button class="action-btn">🔗</button>
+          </div>
+        </article>
+
+        <!-- Post 5 -->
+        <article class="post-card">
+          <div class="post-header">
+            <img src="icons/icon-192.png" alt="Olga Sokolova" class="post-avatar">
+            <div class="post-author-info">
+              <h3 class="post-author">Ольга Соколова</h3>
+              <p class="post-time">2 дня назад</p>
+            </div>
+          </div>
+          <p class="post-content">Ищем Python-разработчика в команду для работы над проектами искусственного интеллекта. Опыт от 2 лет, знание ML/DL обязательно!</p>
+          <div class="post-actions">
+            <button class="action-btn">❤️ 67</button>
+            <button class="action-btn">💬 23</button>
+            <button class="action-btn">🔗</button>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Bottom Navigation для мобильных -->
+  <nav class="bottom-nav">
+    <button class="nav-item active">
+      <span class="nav-icon">🏠</span>
+      <span class="nav-label">Главная</span>
+    </button>
+    <button class="nav-item">
+      <span class="nav-icon">�</span>
+      <span class="nav-label">Вакансии</span>
+    </button>
+    <button class="nav-item">
+      <span class="nav-icon">➕</span>
+      <span class="nav-label">Создать</span>
+    </button>
+    <button class="nav-item">
+      <span class="nav-icon">👤</span>
+      <span class="nav-label">Профиль</span>
+    </button>
+  </nav>
+
+  <script src="app.js"></script>
+  <script>
+    // Register service worker for PWA
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(reg => console.log('Service Worker registered'))
+          .catch(err => console.log('Service Worker registration failed:', err));
+      });
+    }
+  </script>
 </body>
 </html>
