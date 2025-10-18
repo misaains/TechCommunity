@@ -3,39 +3,392 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="theme-color" content="#000000">
+  <meta name="theme-color" content="#ffffff">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="description" content="TechCommunity - Платформа для объединения предприятий, талантов и инноваций">
+  <meta name="description" content="TechCommunity - Платформа профессиональных сообществ">
   
-  <title>TechCommunity - Freelance Platform</title>
+  <title>TechCommunity</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
 </head>
 <body>
-  <!-- Header Profile Section -->
-  <header class="profile-header">
-    <div class="container">
-      <div class="profile-info">
-        <div class="profile-avatar emoji-avatar">🚀</div>
-        <div class="profile-details">
-          <h1 class="profile-name">TechCommunity</h1>
-          <p class="profile-status">12 843 подписчика</p>
-          <p class="profile-bio">Платформа для объединения предприятий, талантов и инноваций. Фрилансеры, специалисты и компании работают над интересными проектами и развиваются вместе с сообществом.</p>
+  <!-- Top Navigation -->
+  <nav class="top-nav">
+    <button class="top-nav-item" data-tab="feed">
+      <span class="nav-icon">📰</span>
+      <span class="nav-text">Лента</span>
+    </button>
+    <button class="top-nav-item" data-tab="search">
+      <span class="nav-icon">🔍</span>
+      <span class="nav-text">Поиск</span>
+    </button>
+    <button class="top-nav-item active" data-tab="communities">
+      <span class="nav-icon">👥</span>
+      <span class="nav-text">Мои сообщества</span>
+    </button>
+    <button class="top-nav-item" data-tab="profile">
+      <span class="nav-icon">👤</span>
+      <span class="nav-text">Профиль</span>
+    </button>
+  </nav>
+
+  <main class="main-content">
+    
+    <!-- Tab 1: Feed (Лента) -->
+    <div class="tab-content" id="feed-tab" style="display: none;">
+      <div class="page-header">
+        <h1 class="page-title">Лента</h1>
+        <p class="page-subtitle">Посты от ваших сообществ</p>
+      </div>
+
+      <div class="feed-container">
+        <article class="feed-post">
+          <div class="post-header">
+            <img src="https://via.placeholder.com/48" alt="Avatar" class="post-avatar">
+            <div class="post-info">
+              <h3 class="post-author">Алексей Смирнов</h3>
+              <p class="post-time">2 часа назад</p>
+            </div>
+          </div>
+          <p class="post-text">Сегодня мы запустили новую функцию в нашем приложении! Команда отлично поработала над этим проектом. Спасибо всем участникам сообщества за поддержку и обратную связь 🚀</p>
+          <img src="https://via.placeholder.com/600x300" alt="Post image" class="post-image-single">
+          <div class="post-actions">
+            <button class="post-action-btn">❤️ 142</button>
+            <button class="post-action-btn">💬 28</button>
+            <button class="post-action-btn">🔗</button>
+            <button class="post-action-btn">🔖</button>
+          </div>
+        </article>
+
+        <article class="feed-post">
+          <div class="post-header">
+            <img src="https://via.placeholder.com/48" alt="Avatar" class="post-avatar">
+            <div class="post-info">
+              <h3 class="post-author">Мария Иванова</h3>
+              <p class="post-time">5 часов назад</p>
+            </div>
+          </div>
+          <p class="post-text">Делюсь опытом работы с новым фреймворком. Кто-нибудь уже пробовал? Буду рада обсудить в комментариях!</p>
+          <div class="post-actions">
+            <button class="post-action-btn">❤️ 89</button>
+            <button class="post-action-btn">💬 15</button>
+            <button class="post-action-btn">🔗</button>
+            <button class="post-action-btn">🔖</button>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- Tab 2: Search (Поиск) -->
+    <div class="tab-content" id="search-tab" style="display: none;">
+      <div class="page-header">
+        <h1 class="page-title">Поиск сообществ</h1>
+      </div>
+
+      <div class="search-container">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" class="search-input" placeholder="Поиск по названию...">
+        </div>
+
+        <div class="filter-section">
+          <h3 class="filter-title">Направления:</h3>
+          <div class="filter-chips">
+            <button class="filter-chip active">Все</button>
+            <button class="filter-chip">Технологии и IT</button>
+            <button class="filter-chip">Дизайн и творчество</button>
+            <button class="filter-chip">Маркетинг</button>
+            <button class="filter-chip">Бизнес</button>
+            <button class="filter-chip">Образование</button>
+          </div>
+        </div>
+
+        <div class="communities-list">
+          <div class="community-card">
+            <img src="https://via.placeholder.com/60" alt="Community" class="community-avatar">
+            <div class="community-info">
+              <div class="community-category">Технологии и IT</div>
+              <h3 class="community-name">Разработчики будущего</h3>
+              <p class="community-description">Сообщество профессиональных разработчиков, дизайнеров и продуктовых менеджеров. Делимся опытом, работаем над интересными проектами и развиваемся вместе.</p>
+              <p class="community-members">12 543 участников</p>
+            </div>
+            <button class="subscribe-btn">Описаться</button>
+          </div>
+
+          <div class="community-card">
+            <img src="https://via.placeholder.com/60" alt="Community" class="community-avatar">
+            <div class="community-info">
+              <div class="community-category">Дизайн и творчество</div>
+              <h3 class="community-name">Дизайнеры и творцы</h3>
+              <p class="community-description">Объединение талантливых дизайнеров, иллюстраторов и художников. Обсуждаем тренды, делимся работами и находим вдохновение.</p>
+              <p class="community-members">8 942 участников</p>
+            </div>
+            <button class="subscribe-btn">Описаться</button>
+          </div>
+
+          <div class="community-card">
+            <img src="https://via.placeholder.com/60" alt="Community" class="community-avatar">
+            <div class="community-info">
+              <div class="community-category">Маркетинг</div>
+              <h3 class="community-name">Маркетинг и продвижение</h3>
+              <p class="community-description">Сообщество специалистов по маркетингу, SMM, контенту и рекламе. Обмениваемся кейсами и стратегиями продвижения.</p>
+              <p class="community-members">15 627 участников</p>
+            </div>
+            <button class="subscribe-btn">Описаться</button>
+          </div>
         </div>
       </div>
     </div>
-  </header>
 
-  <main>
-    <!-- Active Jobs Section -->
-    <section class="jobs-section">
-      <div class="container">
-        <h2 class="section-title">Актуальные вакансии</h2>
-        <div class="jobs-scroll">
-          <div class="job-card">
-            <h3 class="job-title">Разработка мобильного приложения</h3>
+    <!-- Tab 3: My Communities (Мои сообщества) -->
+    <div class="tab-content active" id="communities-tab">
+      <div class="page-header">
+        <h1 class="page-title">Мои сообщества</h1>
+        <p class="page-subtitle">Сообщества, в которых вы состоите</p>
+        <button class="btn-create-community" id="createCommunityBtn">Создать сообщество</button>
+      </div>
+
+      <div class="my-communities-list">
+        <div class="my-community-card">
+          <img src="https://via.placeholder.com/60" alt="Community" class="community-avatar">
+          <div class="community-details">
+            <div class="community-category">Технологии и IT</div>
+            <h3 class="community-name">Разработчики будущего</h3>
+            <p class="community-description">Сообщество профессиональных разработчиков, дизайнеров и продуктовых менеджеров. Делимся опытом, работаем над интересными проектами и развиваемся вместе.</p>
+            <div class="community-stats">
+              <span class="stat-item">12 543 участников</span>
+              <span class="stat-dot">•</span>
+              <span class="stat-item">Участник</span>
+            </div>
+          </div>
+          <div class="community-actions">
+            <span class="unread-badge">0</span>
+            <button class="action-btn-small">Отписаться</button>
+          </div>
+        </div>
+
+        <div class="my-community-card">
+          <img src="https://via.placeholder.com/60" alt="Community" class="community-avatar">
+          <div class="community-details">
+            <div class="community-category">Дизайн и творчество</div>
+            <h3 class="community-name">Дизайнеры и творцы</h3>
+            <p class="community-description">Объединение талантливых дизайнеров, иллюстраторов и художников. Обсуждаем тренды, делимся работами и находим вдохновение.</p>
+            <div class="community-stats">
+              <span class="stat-item">8 942 участников</span>
+              <span class="stat-dot">•</span>
+              <span class="stat-item">Модератор</span>
+            </div>
+          </div>
+          <div class="community-actions">
+            <span class="unread-badge">0</span>
+            <button class="action-btn-small">Отписаться</button>
+          </div>
+        </div>
+
+        <div class="my-community-card">
+          <img src="https://via.placeholder.com/60" alt="Community" class="community-avatar">
+          <div class="community-details">
+            <div class="community-category">Маркетинг</div>
+            <h3 class="community-name">Маркетинг и продвижение</h3>
+            <p class="community-description">Сообщество специалистов по маркетингу, SMM, контенту и рекламе. Обмениваемся кейсами и стратегиями продвижения.</p>
+            <div class="community-stats">
+              <span class="stat-item">15 627 участников</span>
+              <span class="stat-dot">•</span>
+              <span class="stat-item">Администратор</span>
+            </div>
+          </div>
+          <div class="community-actions">
+            <span class="unread-badge">0</span>
+            <button class="action-btn-small">Отписаться</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 4: Profile (Профиль) -->
+    <div class="tab-content" id="profile-tab" style="display: none;">
+      <div class="profile-section">
+        <div class="profile-card">
+          <img src="https://via.placeholder.com/100" alt="User Avatar" class="profile-avatar-large">
+          <h2 class="profile-username">Иван Петров</h2>
+          <p class="profile-email">ivan.petrov@example.com</p>
+          <p class="profile-bio">Full-stack разработчик с 5+ годами опыта. Люблю создавать полезные продукты и делиться знаниями с сообществом.</p>
+          
+          <div class="profile-stats">
+            <div class="stat-box">
+              <div class="stat-number">3</div>
+              <div class="stat-label">Сообщества</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-number">48</div>
+              <div class="stat-label">Публикаций</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-number">1.2K</div>
+              <div class="stat-label">Подписчиков</div>
+            </div>
+          </div>
+
+          <button class="btn-edit-profile">Редактировать профиль</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Modal: Create Community -->
+  <div class="modal" id="createCommunityModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Создание сообщества</h2>
+        <button class="modal-close" id="closeModalBtn">✕</button>
+      </div>
+      <p class="modal-subtitle">Заполните информацию о новом сообществе</p>
+
+      <form class="community-form">
+        <div class="form-group">
+          <label class="form-label">Название сообщества</label>
+          <input type="text" class="form-input" placeholder="Введите название сообщества">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Описание сообщества</label>
+          <textarea class="form-textarea" rows="4" placeholder="Расскажите о вашем сообществе, его целях и интересах"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Направление сообщества</label>
+          <select class="form-select">
+            <option value="">Выберите направление</option>
+            <option value="tech">Технологии и IT</option>
+            <option value="design">Дизайн и творчество</option>
+            <option value="marketing">Маркетинг</option>
+            <option value="business">Бизнес</option>
+            <option value="education">Образование</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Аватар сообщества</label>
+          <p class="form-hint">Выберите изображение для вашего сообщества</p>
+          <div class="avatar-options">
+            <div class="avatar-option">
+              <img src="https://via.placeholder.com/100" alt="Avatar 1">
+            </div>
+            <div class="avatar-option">
+              <img src="https://via.placeholder.com/100" alt="Avatar 2">
+            </div>
+            <div class="avatar-option">
+              <img src="https://via.placeholder.com/100" alt="Avatar 3">
+            </div>
+            <div class="avatar-option">
+              <img src="https://via.placeholder.com/100" alt="Avatar 4">
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-submit">Создать сообщество</button>
+      </form>
+    </div>
+  </div>
+
+
+  <script>
+    // Tab switching logic
+    const tabs = document.querySelectorAll('.top-nav-item');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const tabName = tab.dataset.tab;
+        
+        // Remove active class from all tabs and contents
+        tabs.forEach(t => t.classList.remove('active'));
+        tabContents.forEach(content => {
+          content.style.display = 'none';
+          content.classList.remove('active');
+        });
+        
+        // Add active class to clicked tab and show content
+        tab.classList.add('active');
+        const activeContent = document.getElementById(`${tabName}-tab`);
+        if (activeContent) {
+          activeContent.style.display = 'block';
+          activeContent.classList.add('active');
+        }
+      });
+    });
+
+    // Modal logic
+    const createBtn = document.getElementById('createCommunityBtn');
+    const modal = document.getElementById('createCommunityModal');
+    const closeBtn = document.getElementById('closeModalBtn');
+
+    if (createBtn) {
+      createBtn.addEventListener('click', () => {
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+      });
+    }
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        modal.classList.remove('show');
+        document.body.style.overflow = '';
+      });
+    }
+
+    // Close modal on outside click
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('show');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Form submission
+    const form = document.querySelector('.community-form');
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Сообщество создано! (демо-версия)');
+        modal.classList.remove('show');
+        document.body.style.overflow = '';
+        form.reset();
+      });
+    }
+
+    // Filter chips logic
+    const filterChips = document.querySelectorAll('.filter-chip');
+    filterChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        filterChips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+      });
+    });
+
+    // Avatar selection in modal
+    const avatarOptions = document.querySelectorAll('.avatar-option');
+    avatarOptions.forEach(option => {
+      option.addEventListener('click', () => {
+        avatarOptions.forEach(opt => opt.classList.remove('selected'));
+        option.classList.add('selected');
+      });
+    });
+
+    // Register service worker for PWA
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(reg => console.log('Service Worker registered'))
+          .catch(err => console.log('Service Worker registration failed:', err));
+      });
+    }
+  </script>
+</body>
+</html>
             <p class="job-description">Создание мобильного приложения для iOS и Android с использованием современных технологий</p>
             <div class="job-tags">
               <span class="tag tag-level">Средний</span>
