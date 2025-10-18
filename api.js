@@ -1,11 +1,12 @@
 // ============================
 // API CLIENT для TechCommunity
+// Обновлено под реальные эндпоинты бэкенда
 // ============================
 
 // Конфигурация
 const CONFIG = {
-  // Измените на адрес вашего бэкенда
-  API_BASE_URL: 'http://172.20.10.2:8000/api',
+  // Адрес бэкенда
+  API_BASE_URL: 'http://172.20.10.2:8000/docs',
   
   // Timeout для запросов (в миллисекундах)
   TIMEOUT: 10000,
@@ -13,6 +14,9 @@ const CONFIG = {
   // Включить логирование
   DEBUG: true
 };
+
+// Хранилище токена
+let authToken = localStorage.getItem('authToken') || null;
 
 // ============================
 // УТИЛИТЫ
@@ -28,18 +32,52 @@ function log(message, data = null) {
 }
 
 /**
- * Базовый HTTP запрос с timeout
+ * Сохранить токен
+ */
+function setAuthToken(token) {
+  authToken = token;
+  localStorage.setItem('authToken', token);
+  log('🔐 Auth token saved');
+}
+
+/**
+ * Получить токен
+ */
+function getAuthToken() {
+  return authToken;
+}
+
+/**
+ * Удалить токен (logout)
+ */
+function clearAuthToken() {
+  authToken = null;
+  localStorage.removeItem('authToken');
+  log('🔓 Auth token cleared');
+}
+
+/**
+ * Базовый HTTP запрос с timeout и аутентификацией
  */
 async function apiRequest(endpoint, options = {}) {
   const url = `${CONFIG.API_BASE_URL}${endpoint}`;
   
-  const defaultOptions = {
-    headers: {
-      'Content-Type': 'application/json',
-    },
+  const defaultHeaders = {
+    'Content-Type': 'application/json',
   };
   
-  const config = { ...defaultOptions, ...options };
+  // Добавляем токен если есть (для всех эндпоинтов кроме /signup и /login)
+  if (authToken && !endpoint.includes('/login') && !endpoint.includes('/signup')) {
+    defaultHeaders['Authorization'] = `Bearer ${authToken}`;
+  }
+  
+  const config = {
+    ...options,
+    headers: {
+      ...defaultHeaders,
+      ...options.headers,
+    },
+  };
   
   log(`${config.method || 'GET'} ${url}`, config.body);
   
@@ -53,245 +91,111 @@ async function apiRequest(endpoint, options = {}) {
     const response = await Promise.race([fetchPromise, timeoutPromise]);
     
     if (!response.ok) {
+      if (response.status === 401) {
+        log('❌ Unauthorized - токен неверный или истек');
+        clearAuthToken();
+      }
       const errorData = await response.json().catch(() => ({}));
-      throw new Error(errorData.message || `HTTP ${response.status}: ${response.statusText}`);
+      throw new Error(errorData.message || errorData.detail || `HTTP ${response.status}: ${response.statusText}`);
     }
     
     const data = await response.json();
-    log(`Response from ${endpoint}:`, data);
+    log(`✅ Response from ${endpoint}:`, data);
     
     return data;
   } catch (error) {
-    console.error(`[API] Error on ${endpoint}:`, error);
+    console.error(`[API] ❌ Error on ${endpoint}:`, error);
+    throw error;
+  }
+}
+
+/**
+ * Запрос с form-data (для логина)
+ */
+async function apiRequestFormData(endpoint, formData) {
+  const url = `${CONFIG.API_BASE_URL}${endpoint}`;
+  
+  log(`POST ${url} (form-data)`);
+  
+  try {
+    const fetchPromise = fetch(url, {
+      method: 'POST',
+      body: formData,
+    });
+    
+    const timeoutPromise = new Promise((_, reject) => {
+      setTimeout(() => reject(new Error('Request timeout')), CONFIG.TIMEOUT);
+    });
+    
+    const response = await Promise.race([fetchPromise, timeoutPromise]);
+    
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.message || errorData.detail || `HTTP ${response.status}: ${response.statusText}`);
+    }
+    
+    const data = await response.json();
+    log(`✅ Response from ${endpoint}:`, data);
+    
+    return data;
+  } catch (error) {
+    console.error(`[API] ❌ Error on ${endpoint}:`, error);
     throw error;
   }
 }
 
 // ============================
-// API МЕТОДЫ
+// API МЕТОДЫ (обновлено под реальные эндпоинты бэкенда)
 // ============================
 
 const API = {
   
   // ----------------------
-  // СООБЩЕСТВА
+  // АУТЕНТИФИКАЦИЯ
   // ----------------------
   
   /**
-   * Получить все сообщества
-   * @param {Object} filters - Фильтры (category, search)
-   * @returns {Promise<Array>}
-   */
-  getCommunities: async (filters = {}) => {
-    let endpoint = '/communities';
-    
-    // Добавляем query параметры
-    const params = new URLSearchParams();
-    if (filters.category) params.append('category', filters.category);
-    if (filters.search) params.append('search', filters.search);
-    
-    const queryString = params.toString();
-    if (queryString) endpoint += `?${queryString}`;
-    
-    return apiRequest(endpoint);
-  },
-  
-  /**
-   * Получить сообщество по ID
-   * @param {number} id
+   * Регистрация нового пользователя
+   * POST /api/signup
+   * @param {Object} userData - Данные пользователя {email, password, name, etc.}
    * @returns {Promise<Object>}
    */
-  getCommunity: async (id) => {
-    return apiRequest(`/communities/${id}`);
-  },
-  
-  /**
-   * Создать новое сообщество
-   * @param {Object} data - {name, description, category, avatarUrl}
-   * @returns {Promise<Object>}
-   */
-  createCommunity: async (data) => {
-    return apiRequest('/communities', {
+  signup: async (userData) => {
+    return apiRequest('/signup', {
       method: 'POST',
-      body: JSON.stringify(data)
+      body: JSON.stringify(userData),
     });
   },
   
   /**
-   * Вступить в сообщество
-   * @param {number} communityId
-   * @param {number} userId
-   * @returns {Promise<Object>}
+   * Вход в систему
+   * POST /api/login
+   * @param {string} email - Email пользователя
+   * @param {string} password - Пароль
+   * @returns {Promise<Object>} - Объект с токеном {access_token, token_type}
    */
-  joinCommunity: async (communityId, userId) => {
-    return apiRequest(`/communities/${communityId}/join`, {
-      method: 'POST',
-      body: JSON.stringify({ userId })
-    });
-  },
-  
-  /**
-   * Покинуть сообщество
-   * @param {number} communityId
-   * @param {number} userId
-   * @returns {Promise<Object>}
-   */
-  leaveCommunity: async (communityId, userId) => {
-    return apiRequest(`/communities/${communityId}/leave`, {
-      method: 'POST',
-      body: JSON.stringify({ userId })
-    });
-  },
-  
-  // ----------------------
-  // ПОСТЫ
-  // ----------------------
-  
-  /**
-   * Получить все посты (с фильтрацией)
-   * @param {Object} filters - {communityId, userId}
-   * @returns {Promise<Array>}
-   */
-  getPosts: async (filters = {}) => {
-    let endpoint = '/posts';
+  login: async (email, password) => {
+    const formData = new FormData();
+    formData.append('username', email); // Бэкенд ожидает username, передаем email
+    formData.append('password', password);
     
-    const params = new URLSearchParams();
-    if (filters.communityId) params.append('communityId', filters.communityId);
-    if (filters.userId) params.append('userId', filters.userId);
+    const response = await apiRequestFormData('/login', formData);
     
-    const queryString = params.toString();
-    if (queryString) endpoint += `?${queryString}`;
+    // Сохраняем токен
+    if (response.access_token) {
+      setAuthToken(response.access_token);
+      log('✅ Logged in successfully');
+    }
     
-    return apiRequest(endpoint);
+    return response;
   },
   
   /**
-   * Получить пост по ID
-   * @param {number} id
-   * @returns {Promise<Object>}
+   * Выход из системы (очистка токена)
    */
-  getPost: async (id) => {
-    return apiRequest(`/posts/${id}`);
-  },
-  
-  /**
-   * Создать новый пост
-   * @param {Object} data - {authorId, communityId, content, imageUrl}
-   * @returns {Promise<Object>}
-   */
-  createPost: async (data) => {
-    return apiRequest('/posts', {
-      method: 'POST',
-      body: JSON.stringify(data)
-    });
-  },
-  
-  /**
-   * Лайкнуть пост
-   * @param {number} postId
-   * @param {number} userId
-   * @returns {Promise<Object>}
-   */
-  likePost: async (postId, userId) => {
-    return apiRequest(`/posts/${postId}/like`, {
-      method: 'POST',
-      body: JSON.stringify({ userId })
-    });
-  },
-  
-  /**
-   * Убрать лайк с поста
-   * @param {number} postId
-   * @param {number} userId
-   * @returns {Promise<Object>}
-   */
-  unlikePost: async (postId, userId) => {
-    return apiRequest(`/posts/${postId}/unlike`, {
-      method: 'POST',
-      body: JSON.stringify({ userId })
-    });
-  },
-  
-  // ----------------------
-  // КОММЕНТАРИИ
-  // ----------------------
-  
-  /**
-   * Получить комментарии к посту
-   * @param {number} postId
-   * @returns {Promise<Array>}
-   */
-  getComments: async (postId) => {
-    return apiRequest(`/posts/${postId}/comments`);
-  },
-  
-  /**
-   * Добавить комментарий
-   * @param {number} postId
-   * @param {Object} data - {userId, content}
-   * @returns {Promise<Object>}
-   */
-  addComment: async (postId, data) => {
-    return apiRequest(`/posts/${postId}/comments`, {
-      method: 'POST',
-      body: JSON.stringify(data)
-    });
-  },
-  
-  // ----------------------
-  // КЕЙСЫ
-  // ----------------------
-  
-  /**
-   * Получить все кейсы
-   * @param {Object} filters - {communityId, difficulty}
-   * @returns {Promise<Array>}
-   */
-  getCases: async (filters = {}) => {
-    let endpoint = '/cases';
-    
-    const params = new URLSearchParams();
-    if (filters.communityId) params.append('communityId', filters.communityId);
-    if (filters.difficulty) params.append('difficulty', filters.difficulty);
-    
-    const queryString = params.toString();
-    if (queryString) endpoint += `?${queryString}`;
-    
-    return apiRequest(endpoint);
-  },
-  
-  /**
-   * Получить кейс по ID
-   * @param {number} id
-   * @returns {Promise<Object>}
-   */
-  getCase: async (id) => {
-    return apiRequest(`/cases/${id}`);
-  },
-  
-  /**
-   * Создать новый кейс
-   * @param {Object} data - {title, description, difficulty, skills, deadline, communityId}
-   * @returns {Promise<Object>}
-   */
-  createCase: async (data) => {
-    return apiRequest('/cases', {
-      method: 'POST',
-      body: JSON.stringify(data)
-    });
-  },
-  
-  /**
-   * Подать заявку на кейс
-   * @param {number} caseId
-   * @param {number} userId
-   * @returns {Promise<Object>}
-   */
-  applyToCase: async (caseId, userId) => {
-    return apiRequest(`/cases/${caseId}/apply`, {
-      method: 'POST',
-      body: JSON.stringify({ userId })
-    });
+  logout: () => {
+    clearAuthToken();
+    log('👋 Logged out');
   },
   
   // ----------------------
@@ -300,123 +204,192 @@ const API = {
   
   /**
    * Получить профиль пользователя
-   * @param {number} id
+   * GET /api/users/{user_id}
+   * @param {number} userId - ID пользователя
    * @returns {Promise<Object>}
    */
-  getUser: async (id) => {
-    return apiRequest(`/users/${id}`);
+  getUser: async (userId) => {
+    return apiRequest(`/users/${userId}`);
   },
   
   /**
-   * Обновить профиль пользователя
-   * @param {number} id
-   * @param {Object} data - {name, bio, skills, etc.}
+   * Обновить свой профиль
+   * PUT /api/users/me
+   * @param {Object} userData - Обновленные данные
    * @returns {Promise<Object>}
    */
-  updateUser: async (id, data) => {
-    return apiRequest(`/users/${id}`, {
+  updateProfile: async (userData) => {
+    return apiRequest('/users/me', {
       method: 'PUT',
-      body: JSON.stringify(data)
+      body: JSON.stringify(userData),
     });
-  },
-  
-  /**
-   * Получить статистику пользователя
-   * @param {number} userId
-   * @returns {Promise<Object>}
-   */
-  getUserStats: async (userId) => {
-    return apiRequest(`/users/${userId}/stats`);
   },
   
   // ----------------------
-  // АУТЕНТИФИКАЦИЯ
+  // СООБЩЕСТВА
   // ----------------------
   
   /**
-   * Вход в систему
-   * @param {Object} credentials - {email, password}
+   * Получить список сообществ
+   * GET /api/communities
+   * @param {string} tags - Опциональные теги для фильтрации (через запятую)
+   * @returns {Promise<Array>}
+   */
+  getCommunities: async (tags = null) => {
+    let endpoint = '/communities';
+    
+    // Добавляем query параметры если есть теги
+    if (tags) {
+      const params = new URLSearchParams();
+      params.append('tags', tags);
+      endpoint += `?${params.toString()}`;
+    }
+    
+    return apiRequest(endpoint);
+  },
+  
+  /**
+   * Получить информацию о сообществе
+   * GET /api/communities/{community_id}
+   * @param {number} communityId - ID сообщества
    * @returns {Promise<Object>}
    */
-  login: async (credentials) => {
-    return apiRequest('/auth/login', {
+  getCommunity: async (communityId) => {
+    return apiRequest(`/communities/${communityId}`);
+  },
+  
+  /**
+   * Создать новое сообщество
+   * POST /api/communities
+   * @param {Object} communityData - Данные сообщества {name, description, tags, etc.}
+   * @returns {Promise<Object>}
+   */
+  createCommunity: async (communityData) => {
+    return apiRequest('/communities', {
       method: 'POST',
-      body: JSON.stringify(credentials)
+      body: JSON.stringify(communityData),
+    });
+  },
+  
+  // ----------------------
+  // УЧАСТНИКИ СООБЩЕСТВ
+  // ----------------------
+  
+  /**
+   * Вступить в сообщество
+   * POST /api/communities/{community_id}/join
+   * @param {number} communityId - ID сообщества
+   * @returns {Promise<Object>}
+   */
+  joinCommunity: async (communityId) => {
+    return apiRequest(`/communities/${communityId}/join`, {
+      method: 'POST',
     });
   },
   
   /**
-   * Регистрация
-   * @param {Object} data - {email, password, name}
+   * Получить список участников сообщества
+   * GET /api/communities/{community_id}/members
+   * @param {number} communityId - ID сообщества
+   * @returns {Promise<Array>}
+   */
+  getCommunityMembers: async (communityId) => {
+    return apiRequest(`/communities/${communityId}/members`);
+  },
+  
+  // ----------------------
+  // ОБЪЯВЛЕНИЯ (ANNOUNCEMENTS)
+  // ----------------------
+  
+  /**
+   * Создать объявление в сообществе
+   * POST /api/communities/{community_id}/announcements
+   * @param {number} communityId - ID сообщества
+   * @param {Object} announcementData - Данные объявления {title, content, etc.}
    * @returns {Promise<Object>}
    */
-  register: async (data) => {
-    return apiRequest('/auth/register', {
+  createAnnouncement: async (communityId, announcementData) => {
+    return apiRequest(`/communities/${communityId}/announcements`, {
       method: 'POST',
-      body: JSON.stringify(data)
+      body: JSON.stringify(announcementData),
     });
   },
   
   /**
-   * Выход из системы
+   * Получить список объявлений сообщества
+   * GET /api/communities/{community_id}/announcements
+   * @param {number} communityId - ID сообщества
+   * @returns {Promise<Array>}
+   */
+  getAnnouncements: async (communityId) => {
+    return apiRequest(`/communities/${communityId}/announcements`);
+  },
+  
+  // ----------------------
+  // КЕЙСЫ
+  // ----------------------
+  
+  /**
+   * Создать кейс в сообществе
+   * POST /api/communities/{community_id}/cases
+   * @param {number} communityId - ID сообщества
+   * @param {Object} caseData - Данные кейса {title, description, etc.}
    * @returns {Promise<Object>}
    */
-  logout: async () => {
-    return apiRequest('/auth/logout', {
-      method: 'POST'
-    });
-  }
-};
-
-// ============================
-// КЕШИРОВАНИЕ (опционально)
-// ============================
-
-const cache = {
-  data: new Map(),
-  
-  get(key) {
-    const item = this.data.get(key);
-    if (!item) return null;
-    
-    // Проверяем, не истёк ли срок кеша (5 минут)
-    if (Date.now() - item.timestamp > 5 * 60 * 1000) {
-      this.data.delete(key);
-      return null;
-    }
-    
-    return item.value;
-  },
-  
-  set(key, value) {
-    this.data.set(key, {
-      value,
-      timestamp: Date.now()
+  createCase: async (communityId, caseData) => {
+    return apiRequest(`/communities/${communityId}/cases`, {
+      method: 'POST',
+      body: JSON.stringify(caseData),
     });
   },
   
-  clear() {
-    this.data.clear();
-  }
-};
-
-// Обёртка для кешированных запросов
-API.cached = {
-  getCommunities: async () => {
-    const cached = cache.get('communities');
-    if (cached) {
-      log('Returning cached communities');
-      return cached;
-    }
-    
-    const data = await API.getCommunities();
-    cache.set('communities', data);
-    return data;
-  }
+  /**
+   * Получить список кейсов сообщества
+   * GET /api/communities/{community_id}/cases
+   * @param {number} communityId - ID сообщества
+   * @returns {Promise<Array>}
+   */
+  getCases: async (communityId) => {
+    return apiRequest(`/communities/${communityId}/cases`);
+  },
+  
+  // ----------------------
+  // УТИЛИТЫ
+  // ----------------------
+  
+  /**
+   * Проверить, авторизован ли пользователь
+   * @returns {boolean}
+   */
+  isAuthenticated: () => {
+    return authToken !== null;
+  },
+  
+  /**
+   * Получить текущий токен
+   * @returns {string|null}
+   */
+  getToken: () => {
+    return authToken;
+  },
+  
+  /**
+   * Получить конфигурацию API
+   * @returns {Object}
+   */
+  getConfig: () => {
+    return {
+      API_BASE_URL: CONFIG.API_BASE_URL,
+      TIMEOUT: CONFIG.TIMEOUT,
+      DEBUG: CONFIG.DEBUG,
+      isAuthenticated: authToken !== null,
+      hasToken: authToken !== null,
+    };
+  },
 };
 
 // ============================
-// ЭКСПОРТ
+// ЭКСПОРТ И ИНИЦИАЛИЗАЦИЯ
 // ============================
 
 // Делаем API доступным глобально
@@ -425,7 +398,8 @@ window.APIConfig = CONFIG;
 
 // Логируем успешную загрузку
 console.log('✅ API Client loaded');
-console.log(`📡 Base URL: ${CONFIG.API_BASE_URL}`);
+console.log('� Base URL:', CONFIG.API_BASE_URL);
+console.log('🔐 Authenticated:', API.isAuthenticated());
 
 // Экспорт для ES6 модулей (если нужно)
 if (typeof module !== 'undefined' && module.exports) {
