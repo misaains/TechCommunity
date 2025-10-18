@@ -6,7 +6,7 @@
 // Конфигурация
 const CONFIG = {
   // Адрес бэкенда
-  API_BASE_URL: 'http://172.20.10.2:8000/docs',
+  API_BASE_URL: 'http://172.20.10.2:8000',
   
   // Timeout для запросов (в миллисекундах)
   TIMEOUT: 10000,
