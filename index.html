@@ -296,30 +296,41 @@
 
 
   <script>
-    // Tab switching logic
-    const tabs = document.querySelectorAll('.top-nav-item');
-    const tabContents = document.querySelectorAll('.tab-content');
+    // Wait for DOM to load
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('DOM loaded, initializing tabs...');
+      
+      // Tab switching logic
+      const tabs = document.querySelectorAll('.top-nav-item');
+      const tabContents = document.querySelectorAll('.tab-content');
 
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        const tabName = tab.dataset.tab;
-        
-        // Remove active class from all tabs and contents
-        tabs.forEach(t => t.classList.remove('active'));
-        tabContents.forEach(content => {
-          content.style.display = 'none';
-          content.classList.remove('active');
+      console.log('Found tabs:', tabs.length);
+      console.log('Found contents:', tabContents.length);
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const tabName = tab.dataset.tab;
+          console.log('Clicked tab:', tabName);
+          
+          // Remove active class from all tabs and contents
+          tabs.forEach(t => t.classList.remove('active'));
+          tabContents.forEach(content => {
+            content.style.display = 'none';
+            content.classList.remove('active');
+          });
+          
+          // Add active class to clicked tab and show content
+          tab.classList.add('active');
+          const activeContent = document.getElementById(`${tabName}-tab`);
+          if (activeContent) {
+            activeContent.style.display = 'block';
+            activeContent.classList.add('active');
+            console.log('Activated tab:', tabName);
+          } else {
+            console.error('Tab content not found:', tabName + '-tab');
+          }
         });
-        
-        // Add active class to clicked tab and show content
-        tab.classList.add('active');
-        const activeContent = document.getElementById(`${tabName}-tab`);
-        if (activeContent) {
-          activeContent.style.display = 'block';
-          activeContent.classList.add('active');
-        }
       });
-    });
 
     // Modal logic
     const createBtn = document.getElementById('createCommunityBtn');
