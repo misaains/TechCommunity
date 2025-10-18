@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // ============================
 function initElements() {
   // Navigation
-  bottomNavItems = document.querySelectorAll('.bottom-nav-item');
+  bottomNavItems = document.querySelectorAll('.top-nav-item');
   tabContents = document.querySelectorAll('.tab-content');
   
   // Modals
@@ -66,11 +66,11 @@ function initElements() {
 }
 
 // ============================
-// BOTTOM NAVIGATION
+// TOP NAVIGATION
 // ============================
 function setupBottomNavigation() {
   if (!bottomNavItems || bottomNavItems.length === 0) {
-    console.warn('No bottom nav items found');
+    console.warn('No navigation items found');
     return;
   }
   
