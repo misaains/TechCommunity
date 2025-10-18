@@ -382,21 +382,22 @@
 
     // Avatar selection in modal
     const avatarOptions = document.querySelectorAll('.avatar-option');
-    avatarOptions.forEach(option => {
-      option.addEventListener('click', () => {
-        avatarOptions.forEach(opt => opt.classList.remove('selected'));
-        option.classList.add('selected');
+      avatarOptions.forEach(option => {
+        option.addEventListener('click', () => {
+          avatarOptions.forEach(opt => opt.classList.remove('selected'));
+          option.classList.add('selected');
+        });
       });
-    });
 
-    // Register service worker for PWA
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
+      // Register service worker for PWA
+      if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('/service-worker.js')
           .then(reg => console.log('Service Worker registered'))
           .catch(err => console.log('Service Worker registration failed:', err));
-      });
-    }
+      }
+      
+      console.log('✅ All scripts initialized successfully!');
+    }); // End of DOMContentLoaded
   </script>
 </body>
 </html>
