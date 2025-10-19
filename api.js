@@ -6,7 +6,7 @@
 // Конфигурация
 const CONFIG = {
   // Адрес бэкенда
-  API_BASE_URL: 'http://172.20.10.2:8000/api',
+  API_BASE_URL: 'http://10.88.126.225:8001/api',
   
   // Timeout для запросов (в миллисекундах)
   TIMEOUT: 10000,
@@ -295,6 +295,118 @@ const API = {
    */
   getCommunityMembers: async (communityId) => {
     return apiRequest(`/communities/${communityId}/members`);
+  },
+
+  /**
+   * Подписаться на сообщество
+   * POST /api/communities/{community_id}/subscribe
+   * @param {number} communityId - ID сообщества
+   * @returns {Promise<Object>}
+   */
+  subscribeCommunity: async (communityId) => {
+    return apiRequest(`/communities/${communityId}/subscribe`, {
+      method: 'POST',
+    });
+  },
+
+  /**
+   * Отписаться от сообщества
+   * POST /api/communities/{community_id}/unsubscribe
+   * @param {number} communityId - ID сообщества
+   * @returns {Promise<Object>}
+   */
+  unsubscribeCommunity: async (communityId) => {
+    return apiRequest(`/communities/${communityId}/unsubscribe`, {
+      method: 'POST',
+    });
+  },
+
+  /**
+   * Получить посты сообщества
+   * GET /api/communities/{community_id}/posts
+   * @param {number} communityId - ID сообщества
+   * @returns {Promise<Array>}
+   */
+  getCommunityPosts: async (communityId) => {
+    return apiRequest(`/communities/${communityId}/posts`);
+  },
+  
+  // ----------------------
+  // ЛЕНТА
+  // ----------------------
+
+  /**
+   * Получить ленту постов из подписанных сообществ
+   * GET /api/feed
+   * @returns {Promise<Array>}
+   */
+  getFeed: async () => {
+    return apiRequest('/feed');
+  },
+
+  // ----------------------
+  // ПОСТЫ
+  // ----------------------
+
+  /**
+   * Создать пост
+   * POST /api/posts
+   * @param {Object} postData - Данные поста {content, image, community_id}
+   * @returns {Promise<Object>}
+   */
+  createPost: async (postData) => {
+    return apiRequest('/posts', {
+      method: 'POST',
+      body: JSON.stringify(postData),
+    });
+  },
+
+  /**
+   * Лайкнуть пост
+   * POST /api/posts/{post_id}/like
+   * @param {number} postId - ID поста
+   * @returns {Promise<Object>}
+   */
+  likePost: async (postId) => {
+    return apiRequest(`/posts/${postId}/like`, {
+      method: 'POST',
+    });
+  },
+
+  /**
+   * Убрать лайк с поста
+   * DELETE /api/posts/{post_id}/like
+   * @param {number} postId - ID поста
+   * @returns {Promise<Object>}
+   */
+  unlikePost: async (postId) => {
+    return apiRequest(`/posts/${postId}/like`, {
+      method: 'DELETE',
+    });
+  },
+
+  /**
+   * Получить комментарии поста
+   * GET /api/posts/{post_id}/comments
+   * @param {number} postId - ID поста
+   * @returns {Promise<Array>}
+   */
+  getComments: async (postId) => {
+    return apiRequest(`/posts/${postId}/comments`);
+  },
+
+  /**
+   * Создать комментарий к посту
+   * POST /api/posts/{post_id}/comments
+   * @param {number} postId - ID поста
+   * @param {string} content - Текст комментария
+   * @returns {Promise<Object>}
+   */
+  createComment: async (postId, content) => {
+    return apiRequest(`/posts/${postId}/comments`, {
+      method: 'POST',
+      body: JSON.stringify({ content }),
+    });
   },
   
   // ----------------------

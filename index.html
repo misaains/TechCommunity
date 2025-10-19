@@ -1,465 +1,927 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <meta name="theme-color" content="#000000">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="description" content="TechCommunity - Платформа профессиональных сообществ">
-  
-  <title>TechCommunity</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="manifest" href="manifest.json">
-  <link rel="apple-touch-icon" href="icons/icon-192.png">
-</head>
-<body>
+<!DOCTYPE html><!DOCTYPE html>
 
-  <!-- Top Navigation -->
-  <nav class="top-nav">
-    <button class="top-nav-item active" data-tab="feed">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <rect x="3" y="3" width="7" height="7"/>
-        <rect x="14" y="3" width="7" height="7"/>
-        <rect x="14" y="14" width="7" height="7"/>
-        <rect x="3" y="14" width="7" height="7"/>
-      </svg>
-      <span>Лента</span>
-    </button>
-    <button class="top-nav-item" data-tab="search">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <circle cx="11" cy="11" r="8"/>
-        <path d="m21 21-4.35-4.35"/>
-      </svg>
-      <span>Поиск</span>
-    </button>
-    <button class="top-nav-item" data-tab="communities">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-        <circle cx="9" cy="7" r="4"/>
+<html lang="ru"><html lang="ru">
+
+<head><head>
+
+    <meta charset="UTF-8">  <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+
+    <meta name="theme-color" content="#0D1117">  <meta name="theme-color" content="#000000">
+
+    <title>TechCommunity - Work it</title>  <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <link rel="manifest" href="/manifest.json">  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="stylesheet" href="/styles.css">  <meta name="mobile-web-app-capable" content="yes">
+
+</head>  <meta name="description" content="TechCommunity - Платформа профессиональных сообществ">
+
+<body>  
+
+    <!-- ЭКРАН АВТОРИЗАЦИИ -->  <title>TechCommunity</title>
+
+    <div id="auth-screen" class="screen active">  <link rel="stylesheet" href="styles.css">
+
+        <div class="auth-container">  <link rel="manifest" href="manifest.json">
+
+            <h1 class="auth-logo">Work it</h1>  <link rel="apple-touch-icon" href="icons/icon-192.png">
+
+            <p class="auth-tagline">Учись. Работай. Живи!</p></head>
+
+            <body>
+
+            <!-- Вкладки -->
+
+            <div class="auth-tabs">  <!-- Top Navigation -->
+
+                <button class="auth-tab active" data-tab="login">Логин</button>  <nav class="top-nav">
+
+                <button class="auth-tab" data-tab="register">Зарегистрироваться</button>    <button class="top-nav-item active" data-tab="feed">
+
+            </div>      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+
+                    <rect x="3" y="3" width="7" height="7"/>
+
+            <!-- Форма входа -->        <rect x="14" y="3" width="7" height="7"/>
+
+            <form id="login-form" class="auth-form active">        <rect x="14" y="14" width="7" height="7"/>
+
+                <input type="email" id="login-email" placeholder="Введите логин" required>        <rect x="3" y="14" width="7" height="7"/>
+
+                <input type="password" id="login-password" placeholder="Введите пароль" required>      </svg>
+
+                <a href="#" class="forgot-password">Забыли пароль?</a>      <span>Лента</span>
+
+                <button type="submit" class="btn btn-primary btn-full">Войти</button>    </button>
+
+            </form>    <button class="top-nav-item" data-tab="search">
+
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+
+            <!-- Форма регистрации -->        <circle cx="11" cy="11" r="8"/>
+
+            <form id="register-form" class="auth-form">        <path d="m21 21-4.35-4.35"/>
+
+                <input type="text" id="register-name" placeholder="Полное имя" required>      </svg>
+
+                <input type="email" id="register-email" placeholder="Email" required>      <span>Поиск</span>
+
+                <input type="password" id="register-password" placeholder="Пароль" required>    </button>
+
+                <button type="submit" class="btn btn-primary btn-full">Зарегистрироваться</button>    <button class="top-nav-item" data-tab="communities">
+
+            </form>      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+
+        </div>        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+
+    </div>        <circle cx="9" cy="7" r="4"/>
+
         <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-      </svg>
-      <span>Сообщества</span>
-    </button>
-    <button class="top-nav-item" data-tab="profile">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-        <circle cx="12" cy="7" r="4"/>
-      </svg>
-      <span>Профиль</span>
-    </button>
-  </nav>
 
-  <!-- Main Container -->
-  <div class="app-container">
-    
-    <!-- Tab 1: Лента (Feed) -->
-    <div class="tab-content active" id="feed-tab">
-      <div class="page-header">
-        <h1 class="page-title">Лента</h1>
-        <button class="btn-new-post" id="newPostBtn">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path d="M12 5v14M5 12h14" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-        </button>
-      </div>
+    <!-- ГЛАВНЫЙ ЭКРАН ПРИЛОЖЕНИЯ -->        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
 
-      <div class="feed-container">
-        <!-- Post 1 -->
-        <article class="feed-post">
-          <div class="post-header">
-            <img src="https://via.placeholder.com/48" alt="Алексей Смирнов" class="post-avatar">
+    <div id="app-screen" class="screen">      </svg>
+
+        <!-- Верхняя навигация -->      <span>Сообщества</span>
+
+        <nav class="top-nav">    </button>
+
+            <button class="nav-item active" data-page="feed">    <button class="top-nav-item" data-tab="profile">
+
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+
+                    <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+
+                </svg>        <circle cx="12" cy="7" r="4"/>
+
+                <span>Лента</span>      </svg>
+
+            </button>      <span>Профиль</span>
+
+            <button class="nav-item" data-page="search">    </button>
+
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">  </nav>
+
+                    <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+
+                </svg>  <!-- Main Container -->
+
+                <span>Поиск</span>  <div class="app-container">
+
+            </button>    
+
+            <button class="nav-item" data-page="communities">    <!-- Tab 1: Лента (Feed) -->
+
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">    <div class="tab-content active" id="feed-tab">
+
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>      <div class="page-header">
+
+                    <circle cx="9" cy="7" r="4"/>        <h1 class="page-title">Лента</h1>
+
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>        <button class="btn-new-post" id="newPostBtn">
+
+                </svg>          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+
+                <span>Мои сообщества</span>            <path d="M12 5v14M5 12h14" stroke-width="2" stroke-linecap="round"/>
+
+            </button>          </svg>
+
+            <button class="nav-item" data-page="profile">        </button>
+
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">      </div>
+
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+
+                    <circle cx="12" cy="7" r="4"/>      <div class="feed-container">
+
+                </svg>        <!-- Post 1 -->
+
+                <span>Профиль</span>        <article class="feed-post">
+
+            </button>          <div class="post-header">
+
+        </nav>            <img src="https://via.placeholder.com/48" alt="Алексей Смирнов" class="post-avatar">
+
             <div class="post-author-info">
-              <div class="post-author-name">Алексей Смирнов</div>
-              <div class="post-meta">2 часа назад • Технологии и IT</div>
-            </div>
-            <button class="post-menu-btn">⋮</button>
-          </div>
-          
-          <div class="post-content">
-            <p>Сегодня мы запустили новую функцию в нашем приложении! 🚀 Теперь пользователи могут создавать собственные кейсы и делиться опытом с сообществом.</p>
-          </div>
 
-          <div class="post-image">
-            <img src="https://via.placeholder.com/600x300/4A90E2/ffffff?text=App+Screenshot" alt="Post image">
-          </div>
+        <!-- Контент страниц -->              <div class="post-author-name">Алексей Смирнов</div>
 
-          <div class="post-actions">
-            <button class="post-action-btn">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-              </svg>
-              <span>142</span>
-            </button>
-            <button class="post-action-btn">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-              </svg>
-              <span>28</span>
-            </button>
-            <button class="post-action-btn">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
-                <polyline points="16 6 12 2 8 6"/>
-                <line x1="12" y1="2" x2="12" y2="15"/>
-              </svg>
-            </button>
-            <button class="post-action-btn">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
-              </svg>
-            </button>
-          </div>
-        </article>
+        <div id="page-container">              <div class="post-meta">2 часа назад • Технологии и IT</div>
 
-        <!-- Post 2 -->
-        <article class="feed-post">
-          <div class="post-header">
-            <img src="https://via.placeholder.com/48" alt="Мария Петрова" class="post-avatar">
-            <div class="post-author-info">
-              <div class="post-author-name">Мария Петрова</div>
-              <div class="post-meta">5 часов назад • Дизайнеры и творцы</div>
-            </div>
-            <button class="post-menu-btn">⋮</button>
-          </div>
-          
-          <div class="post-content">
+            <!-- ЛЕНТА -->            </div>
+
+            <div id="feed-page" class="page active">            <button class="post-menu-btn">⋮</button>
+
+                <div class="page-content">          </div>
+
+                    <div id="feed-list" class="posts-list"></div>          
+
+                    <div class="loading" id="feed-loading">Загрузка...</div>          <div class="post-content">
+
+                </div>            <p>Сегодня мы запустили новую функцию в нашем приложении! 🚀 Теперь пользователи могут создавать собственные кейсы и делиться опытом с сообществом.</p>
+
+            </div>          </div>
+
+
+
+            <!-- ПОИСК -->          <div class="post-image">
+
+            <div id="search-page" class="page">            <img src="https://via.placeholder.com/600x300/4A90E2/ffffff?text=App+Screenshot" alt="Post image">
+
+                <div class="page-content">          </div>
+
+                    <div class="search-header">
+
+                        <h2>Поиск сообществ</h2>          <div class="post-actions">
+
+                        <div class="search-box">            <button class="post-action-btn">
+
+                            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+
+                                <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+
+                            </svg>              </svg>
+
+                            <input type="text" id="search-input" placeholder="Поиск по названию...">              <span>142</span>
+
+                        </div>            </button>
+
+                    </div>            <button class="post-action-btn">
+
+                                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+
+                    <div class="categories-section">                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+
+                        <h3>Направления:</h3>              </svg>
+
+                        <div class="categories-scroll">              <span>28</span>
+
+                            <button class="category-chip active" data-category="Все">Все</button>            </button>
+
+                            <button class="category-chip" data-category="Генная инженерия">Генная инженерия</button>            <button class="post-action-btn">
+
+                            <button class="category-chip" data-category="Радиотехника">Радиотехника</button>              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+
+                            <button class="category-chip" data-category="Технологии и IT">Технологии и IT</button>                <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+
+                            <button class="category-chip" data-category="Дизайн и творчество">Дизайн и творчество</button>                <polyline points="16 6 12 2 8 6"/>
+
+                            <button class="category-chip" data-category="Маркетинг">Маркетинг</button>                <line x1="12" y1="2" x2="12" y2="15"/>
+
+                            <button class="category-chip" data-category="Бизнес">Бизнес</button>              </svg>
+
+                            <button class="category-chip" data-category="Образование">Образование</button>            </button>
+
+                        </div>            <button class="post-action-btn">
+
+                    </div>              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+
+                                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+
+                    <div id="communities-list" class="communities-list"></div>              </svg>
+
+                    <div class="loading" id="search-loading">Загрузка...</div>            </button>
+
+                </div>          </div>
+
+            </div>        </article>
+
+
+
+            <!-- МОИ СООБЩЕСТВА -->        <!-- Post 2 -->
+
+            <div id="communities-page" class="page">        <article class="feed-post">
+
+                <div class="page-content">          <div class="post-header">
+
+                    <div class="page-header">            <img src="https://via.placeholder.com/48" alt="Мария Петрова" class="post-avatar">
+
+                        <h2>Мои сообщества</h2>            <div class="post-author-info">
+
+                        <button id="create-community-btn" class="btn btn-primary">Создать сообщество</button>              <div class="post-author-name">Мария Петрова</div>
+
+                    </div>              <div class="post-meta">5 часов назад • Дизайнеры и творцы</div>
+
+                    <p class="subtitle">Сообщества, в которых вы состоите</p>            </div>
+
+                    <div id="my-communities-list" class="communities-list"></div>            <button class="post-menu-btn">⋮</button>
+
+                    <div class="loading" id="communities-loading">Загрузка...</div>          </div>
+
+                </div>          
+
+            </div>          <div class="post-content">
+
             <p>Поделюсь результатами нашего последнего редизайна. Команда проделала огромную работу! Что думаете? 🎨</p>
-          </div>
 
-          <div class="post-actions">
-            <button class="post-action-btn">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-              </svg>
-              <span>89</span>
-            </button>
-            <button class="post-action-btn">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-              </svg>
-              <span>15</span>
-            </button>
-            <button class="post-action-btn">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
-                <polyline points="16 6 12 2 8 6"/>
-                <line x1="12" y1="2" x2="12" y2="15"/>
-              </svg>
-            </button>
-            <button class="post-action-btn">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
-              </svg>
-            </button>
-          </div>
-        </article>
-      </div>
-    </div>
+            <!-- ПРОФИЛЬ -->          </div>
 
-    <!-- Tab 2: Поиск (Search) -->
-    <div class="tab-content" id="search-tab">
-      <div class="page-header">
-        <h1 class="page-title">Поиск</h1>
-      </div>
+            <div id="profile-page" class="page">
 
-      <div class="search-container">
-        <div class="search-box">
-          <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <circle cx="11" cy="11" r="8"/>
-            <path d="m21 21-4.35-4.35"/>
-          </svg>
-          <input type="text" placeholder="Поиск сообществ..." class="search-input">
-        </div>
+                <div class="page-content">          <div class="post-actions">
 
-        <div class="filter-chips">
-          <button class="filter-chip active" data-category="all">Все</button>
-          <button class="filter-chip" data-category="tech">Технологии</button>
-          <button class="filter-chip" data-category="design">Дизайн</button>
-          <button class="filter-chip" data-category="business">Бизнес</button>
-          <button class="filter-chip" data-category="science">Наука</button>
-        </div>
+                    <div class="profile-header">            <button class="post-action-btn">
 
-        <div class="communities-grid">
-          <!-- Community Card 1 -->
-          <div class="community-card">
-            <img src="https://via.placeholder.com/60" alt="Технологии и IT" class="community-avatar">
-            <div class="community-info">
-              <h3 class="community-name">Технологии и IT</h3>
-              <p class="community-description">Разработчики будущего</p>
-              <p class="community-meta">12 543 участников</p>
+                        <button id="settings-btn" class="icon-btn">              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+
+                                <circle cx="12" cy="12" r="3"/>              </svg>
+
+                                <path d="M12 1v6m0 6v6m6-11l-5.2 3m0 6L18 19M6 5l5.2 3m0 6L6 19"/>              <span>89</span>
+
+                            </svg>            </button>
+
+                        </button>            <button class="post-action-btn">
+
+                        <button id="logout-btn" class="icon-btn">              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+
+                                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>              </svg>
+
+                            </svg>              <span>15</span>
+
+                        </button>            </button>
+
+                    </div>            <button class="post-action-btn">
+
+                                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+
+                    <div id="profile-info" class="profile-info">                <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+
+                        <div class="profile-avatar">                <polyline points="16 6 12 2 8 6"/>
+
+                            <div class="avatar-circle">                <line x1="12" y1="2" x2="12" y2="15"/>
+
+                                <svg viewBox="0 0 24 24" fill="currentColor">              </svg>
+
+                                    <path d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z"/>            </button>
+
+                                </svg>            <button class="post-action-btn">
+
+                            </div>              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+
+                        </div>                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+
+                                      </svg>
+
+                        <h2 id="profile-name">Загрузка...</h2>            </button>
+
+                        <p id="profile-username" class="profile-username">@username</p>          </div>
+
+                        <p id="profile-bio" class="profile-bio"></p>        </article>
+
+                              </div>
+
+                        <div class="profile-details">    </div>
+
+                            <div class="detail-item" id="profile-location">
+
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">    <!-- Tab 2: Поиск (Search) -->
+
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>    <div class="tab-content" id="search-tab">
+
+                                    <circle cx="12" cy="10" r="3"/>      <div class="page-header">
+
+                                </svg>        <h1 class="page-title">Поиск</h1>
+
+                                <span>Москва, Россия</span>      </div>
+
+                            </div>
+
+                            <div class="detail-item" id="profile-email">      <div class="search-container">
+
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">        <div class="search-box">
+
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>          <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+
+                                    <polyline points="22,6 12,13 2,6"/>            <circle cx="11" cy="11" r="8"/>
+
+                                </svg>            <path d="m21 21-4.35-4.35"/>
+
+                                <span>email@example.com</span>          </svg>
+
+                            </div>          <input type="text" placeholder="Поиск сообществ..." class="search-input">
+
+                            <div class="detail-item" id="profile-education">        </div>
+
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+
+                                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>        <div class="filter-chips">
+
+                                    <path d="M6 12v5c3 3 9 3 12 0v-5"/>          <button class="filter-chip active" data-category="all">Все</button>
+
+                                </svg>          <button class="filter-chip" data-category="tech">Технологии</button>
+
+                                <span>МГУ им. М.В. Ломоносова</span>          <button class="filter-chip" data-category="design">Дизайн</button>
+
+                            </div>          <button class="filter-chip" data-category="business">Бизнес</button>
+
+                            <div class="detail-item" id="profile-joined">          <button class="filter-chip" data-category="science">Наука</button>
+
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">        </div>
+
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+
+                                    <line x1="16" y1="2" x2="16" y2="6"/>        <div class="communities-grid">
+
+                                    <line x1="8" y1="2" x2="8" y2="6"/>          <!-- Community Card 1 -->
+
+                                    <line x1="3" y1="10" x2="21" y2="10"/>          <div class="community-card">
+
+                                </svg>            <img src="https://via.placeholder.com/60" alt="Технологии и IT" class="community-avatar">
+
+                                <span>Участник с Октября 2023</span>            <div class="community-info">
+
+                            </div>              <h3 class="community-name">Технологии и IT</h3>
+
+                            <div class="detail-item" id="profile-status">              <p class="community-description">Разработчики будущего</p>
+
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">              <p class="community-meta">12 543 участников</p>
+
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>            </div>
+
+                                    <circle cx="12" cy="7" r="4"/>            <button class="btn-join">Вступить</button>
+
+                                </svg>          </div>
+
+                                <span>Специалист</span>
+
+                            </div>          <!-- Community Card 2 -->
+
+                        </div>          <div class="community-card">
+
+                                    <img src="https://via.placeholder.com/60" alt="Дизайнеры и творцы" class="community-avatar">
+
+                        <button id="edit-profile-btn" class="btn btn-primary btn-full">Редактировать профиль</button>            <div class="community-info">
+
+                                      <h3 class="community-name">Дизайнеры и творцы</h3>
+
+                        <div class="profile-stats">              <p class="community-description">UI/UX и графический дизайн</p>
+
+                            <h3>Статистика</h3>              <p class="community-meta">8 234 участников</p>
+
+                            <div class="stats-grid">            </div>
+
+                                <div class="stat-item">            <button class="btn-join">Вступить</button>
+
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">          </div>
+
+                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+
+                                        <circle cx="9" cy="7" r="4"/>          <!-- Community Card 3 -->
+
+                                        <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>          <div class="community-card">
+
+                                    </svg>            <img src="https://via.placeholder.com/60" alt="Маркетинг и продажи" class="community-avatar">
+
+                                    <div class="stat-value" id="stat-communities">12</div>            <div class="community-info">
+
+                                    <div class="stat-label">Сообществ</div>              <h3 class="community-name">Маркетинг и продажи</h3>
+
+                                </div>              <p class="community-description">Продвижение и стратегии</p>
+
+                                <div class="stat-item">              <p class="community-meta">5 678 участников</p>
+
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">            </div>
+
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>            <button class="btn-join">Вступить</button>
+
+                                        <polyline points="14,2 14,8 20,8"/>          </div>
+
+                                    </svg>
+
+                                    <div class="stat-value" id="stat-cases">24</div>          <!-- Community Card 4 -->
+
+                                    <div class="stat-label">Кейсов</div>          <div class="community-card">
+
+                                </div>            <img src="https://via.placeholder.com/60" alt="Наука и образование" class="community-avatar">
+
+                                <div class="stat-item">            <div class="community-info">
+
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">              <h3 class="community-name">Наука и образование</h3>
+
+                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>              <p class="community-description">Исследования и обучение</p>
+
+                                    </svg>              <p class="community-meta">3 456 участников</p>
+
+                                    <div class="stat-value" id="stat-reputation">4850</div>            </div>
+
+                                    <div class="stat-label">Репутация</div>            <button class="btn-join">Вступить</button>
+
+                                </div>          </div>
+
+                            </div>        </div>
+
+                        </div>      </div>
+
+                            </div>
+
+                        <div class="profile-skills" id="profile-skills-section">
+
+                            <h3>Навыки</h3>    <!-- Tab 3: Мои сообщества (My Communities) -->
+
+                            <div id="profile-skills-list" class="skills-list"></div>    <div class="tab-content" id="communities-tab">
+
+                        </div>      <div class="page-header">
+
+                                <h1 class="page-title">Мои сообщества</h1>
+
+                        <div class="profile-achievements">        <button class="btn-create-community" id="createCommunityBtn">
+
+                            <h3>Достижения</h3>          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+
+                            <div class="achievement-item">            <path d="M12 5v14M5 12h14" stroke-width="2" stroke-linecap="round"/>
+
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">          </svg>
+
+                                    <circle cx="12" cy="8" r="7"/>        </button>
+
+                                    <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>      </div>
+
+                                </svg>
+
+                                <div>      <div class="my-communities-container">
+
+                                    <div class="achievement-title">Активный участник</div>        <!-- My Community 1 -->
+
+                                    <div class="achievement-desc">100+ активностей</div>        <div class="my-community-card">
+
+                                </div>          <div class="community-card-header">
+
+                            </div>            <img src="https://via.placeholder.com/60" alt="Технологии и IT" class="community-avatar">
+
+                        </div>            <div class="community-info">
+
+                    </div>              <h3 class="community-name">Технологии и IT</h3>
+
+                </div>              <p class="community-description">Разработчики будущего</p>
+
+            </div>              <p class="community-meta">12 543 участников</p>
+
             </div>
-            <button class="btn-join">Вступить</button>
-          </div>
 
-          <!-- Community Card 2 -->
-          <div class="community-card">
-            <img src="https://via.placeholder.com/60" alt="Дизайнеры и творцы" class="community-avatar">
-            <div class="community-info">
-              <h3 class="community-name">Дизайнеры и творцы</h3>
-              <p class="community-description">UI/UX и графический дизайн</p>
-              <p class="community-meta">8 234 участников</p>
-            </div>
-            <button class="btn-join">Вступить</button>
-          </div>
+            <!-- РЕДАКТИРОВАНИЕ ПРОФИЛЯ -->          </div>
 
-          <!-- Community Card 3 -->
-          <div class="community-card">
-            <img src="https://via.placeholder.com/60" alt="Маркетинг и продажи" class="community-avatar">
-            <div class="community-info">
-              <h3 class="community-name">Маркетинг и продажи</h3>
-              <p class="community-description">Продвижение и стратегии</p>
-              <p class="community-meta">5 678 участников</p>
-            </div>
-            <button class="btn-join">Вступить</button>
-          </div>
+            <div id="edit-profile-page" class="page">          <div class="community-role-badge role-admin">Администратор</div>
 
-          <!-- Community Card 4 -->
-          <div class="community-card">
-            <img src="https://via.placeholder.com/60" alt="Наука и образование" class="community-avatar">
-            <div class="community-info">
-              <h3 class="community-name">Наука и образование</h3>
-              <p class="community-description">Исследования и обучение</p>
-              <p class="community-meta">3 456 участников</p>
-            </div>
-            <button class="btn-join">Вступить</button>
-          </div>
-        </div>
-      </div>
-    </div>
+                <div class="page-content">          <button class="btn-secondary">Управление</button>
 
-    <!-- Tab 3: Мои сообщества (My Communities) -->
-    <div class="tab-content" id="communities-tab">
-      <div class="page-header">
-        <h1 class="page-title">Мои сообщества</h1>
-        <button class="btn-create-community" id="createCommunityBtn">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path d="M12 5v14M5 12h14" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-        </button>
-      </div>
+                    <div class="page-header-back">        </div>
 
-      <div class="my-communities-container">
-        <!-- My Community 1 -->
-        <div class="my-community-card">
-          <div class="community-card-header">
-            <img src="https://via.placeholder.com/60" alt="Технологии и IT" class="community-avatar">
-            <div class="community-info">
-              <h3 class="community-name">Технологии и IT</h3>
-              <p class="community-description">Разработчики будущего</p>
-              <p class="community-meta">12 543 участников</p>
-            </div>
-          </div>
-          <div class="community-role-badge role-admin">Администратор</div>
-          <button class="btn-secondary">Управление</button>
-        </div>
+                        <button id="back-from-edit" class="icon-btn">
 
-        <!-- My Community 2 -->
-        <div class="my-community-card">
-          <div class="community-card-header">
-            <img src="https://via.placeholder.com/60" alt="Дизайнеры и творцы" class="community-avatar">
-            <div class="community-info">
-              <h3 class="community-name">Дизайнеры и творцы</h3>
-              <p class="community-description">UI/UX и графический дизайн</p>
-              <p class="community-meta">8 234 участников</p>
-            </div>
-          </div>
-          <div class="community-role-badge role-moderator">Модератор</div>
-          <button class="btn-secondary">Управление</button>
-        </div>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">        <!-- My Community 2 -->
 
-        <!-- My Community 3 -->
-        <div class="my-community-card">
-          <div class="community-card-header">
-            <img src="https://via.placeholder.com/60" alt="Стартапы" class="community-avatar">
-            <div class="community-info">
-              <h3 class="community-name">Стартапы и бизнес</h3>
-              <p class="community-description">От идеи до успеха</p>
-              <p class="community-meta">4 123 участников</p>
-            </div>
-          </div>
-          <div class="community-role-badge role-member">Участник</div>
-          <button class="btn-secondary btn-leave">Отписаться</button>
-        </div>
-      </div>
-    </div>
+                                <line x1="19" y1="12" x2="5" y2="12"/>        <div class="my-community-card">
 
-    <!-- Tab 4: Профиль (Profile) -->
-    <div class="tab-content" id="profile-tab">
-      <div class="profile-header">
-        <div class="profile-actions">
-          <button class="icon-btn">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <circle cx="12" cy="12" r="3"/>
-              <path d="M12 1v6m0 6v6M5.64 5.64l4.24 4.24m4.24 4.24l4.24 4.24M1 12h6m6 0h6M5.64 18.36l4.24-4.24m4.24-4.24l4.24-4.24"/>
-            </svg>
-          </button>
-          <button class="icon-btn">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-              <polyline points="15 3 21 3 21 9"/>
-              <line x1="10" y1="14" x2="21" y2="3"/>
-            </svg>
-          </button>
-        </div>
+                                <polyline points="12 19 5 12 12 5"/>          <div class="community-card-header">
 
-        <div class="profile-avatar-container">
-          <img src="https://via.placeholder.com/100" alt="Мария Иванова" class="profile-avatar">
-        </div>
+                            </svg>            <img src="https://via.placeholder.com/60" alt="Дизайнеры и творцы" class="community-avatar">
 
-        <h1 class="profile-name">Мария Иванова</h1>
-        <p class="profile-username">@maria_ivanova</p>
-        <p class="profile-bio">Full-stack разработчик • Любитель code review и хороших архитектурных решений 💻</p>
+                        </button>            <div class="community-info">
 
-        <div class="profile-details">
-          <div class="profile-detail-item">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
-              <circle cx="12" cy="10" r="3"/>
-            </svg>
+                        <h2>Редактирование профиля</h2>              <h3 class="community-name">Дизайнеры и творцы</h3>
+
+                    </div>              <p class="community-description">UI/UX и графический дизайн</p>
+
+                                  <p class="community-meta">8 234 участников</p>
+
+                    <form id="edit-profile-form">            </div>
+
+                        <div class="form-group">          </div>
+
+                            <label>Имя</label>          <div class="community-role-badge role-moderator">Модератор</div>
+
+                            <input type="text" id="edit-name" placeholder="Мария Иванова">          <button class="btn-secondary">Управление</button>
+
+                        </div>        </div>
+
+                        
+
+                        <div class="form-group">        <!-- My Community 3 -->
+
+                            <label>Короткое имя (@username)</label>        <div class="my-community-card">
+
+                            <input type="text" id="edit-username" placeholder="maria_ivanova">          <div class="community-card-header">
+
+                        </div>            <img src="https://via.placeholder.com/60" alt="Стартапы" class="community-avatar">
+
+                                    <div class="community-info">
+
+                        <div class="form-group">              <h3 class="community-name">Стартапы и бизнес</h3>
+
+                            <label>Местоположение</label>              <p class="community-description">От идеи до успеха</p>
+
+                            <input type="text" id="edit-location" placeholder="Москва, Россия">              <p class="community-meta">4 123 участников</p>
+
+                        </div>            </div>
+
+                                  </div>
+
+                        <div class="form-group">          <div class="community-role-badge role-member">Участник</div>
+
+                            <label>Email</label>          <button class="btn-secondary btn-leave">Отписаться</button>
+
+                            <input type="email" id="edit-email" placeholder="maria@example.com" disabled>        </div>
+
+                        </div>      </div>
+
+                            </div>
+
+                        <div class="form-group">
+
+                            <label>Место учёбы/работы</label>    <!-- Tab 4: Профиль (Profile) -->
+
+                            <input type="text" id="edit-education" placeholder="МГУ им. М.В. Ломоносова">    <div class="tab-content" id="profile-tab">
+
+                        </div>      <div class="profile-header">
+
+                                <div class="profile-actions">
+
+                        <div class="form-group">          <button class="icon-btn">
+
+                            <label>Название компании</label>            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+
+                            <input type="text" id="edit-company" placeholder="TechCorp">              <circle cx="12" cy="12" r="3"/>
+
+                        </div>              <path d="M12 1v6m0 6v6M5.64 5.64l4.24 4.24m4.24 4.24l4.24 4.24M1 12h6m6 0h6M5.64 18.36l4.24-4.24m4.24-4.24l4.24-4.24"/>
+
+                                    </svg>
+
+                        <div class="form-group">          </button>
+
+                            <label>Статус</label>          <button class="icon-btn">
+
+                            <div class="status-toggle">            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+
+                                <button type="button" class="status-btn active" data-status="user">Специалист</button>              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+
+                                <button type="button" class="status-btn" data-status="company_representative">Представитель компании</button>              <polyline points="15 3 21 3 21 9"/>
+
+                            </div>              <line x1="10" y1="14" x2="21" y2="3"/>
+
+                        </div>            </svg>
+
+                                  </button>
+
+                        <div class="form-group">        </div>
+
+                            <label>Описание профиля</label>
+
+                            <textarea id="edit-bio" rows="4" placeholder="Full-stack разработчик • Любитель кофе и открытых технологий • Люблю создавать полезные приложения"></textarea>        <div class="profile-avatar-container">
+
+                        </div>          <img src="https://via.placeholder.com/100" alt="Мария Иванова" class="profile-avatar">
+
+                                </div>
+
+                        <div class="form-group" id="skills-section">
+
+                            <label>Навыки</label>        <h1 class="profile-name">Мария Иванова</h1>
+
+                            <div id="edit-skills-list" class="skills-edit-list"></div>        <p class="profile-username">@maria_ivanova</p>
+
+                            <button type="button" id="add-skill-btn" class="btn btn-secondary">Выбрать навыки из списка</button>        <p class="profile-bio">Full-stack разработчик • Любитель code review и хороших архитектурных решений 💻</p>
+
+                        </div>
+
+                                <div class="profile-details">
+
+                        <button type="submit" class="btn btn-primary btn-full">Сохранить изменения</button>          <div class="profile-detail-item">
+
+                        <button type="button" id="cancel-edit-btn" class="btn btn-secondary btn-full">Отменить изменения</button>            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+
+                    </form>              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+
+                </div>              <circle cx="12" cy="10" r="3"/>
+
+            </div>            </svg>
+
             <span>Москва, Россия</span>
-          </div>
-          <div class="profile-detail-item">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-              <line x1="16" y1="2" x2="16" y2="6"/>
-              <line x1="8" y1="2" x2="8" y2="6"/>
-              <line x1="3" y1="10" x2="21" y2="10"/>
-            </svg>
-            <span>Участник с Октябрь 2023</span>
-          </div>
-          <div class="profile-detail-item">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
-              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
-            </svg>
-            <span>МГУ им. М.В. Ломоносова</span>
-          </div>
-        </div>
 
-        <button class="btn-primary btn-full">Редактировать профиль</button>
-      </div>
+            <!-- СТРАНИЦА СООБЩЕСТВА -->          </div>
 
-      <div class="profile-stats">
-        <div class="stat-item">
-          <div class="stat-value">12</div>
-          <div class="stat-label">Сообществ</div>
-        </div>
-        <div class="stat-item">
+            <div id="community-page" class="page">          <div class="profile-detail-item">
+
+                <div class="page-content">            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+
+                    <div class="page-header-back">              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+
+                        <button id="back-from-community" class="icon-btn">              <line x1="16" y1="2" x2="16" y2="6"/>
+
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">              <line x1="8" y1="2" x2="8" y2="6"/>
+
+                                <line x1="19" y1="12" x2="5" y2="12"/>              <line x1="3" y1="10" x2="21" y2="10"/>
+
+                                <polyline points="12 19 5 12 12 5"/>            </svg>
+
+                            </svg>            <span>Участник с Октябрь 2023</span>
+
+                        </button>          </div>
+
+                        <h2>Сообщество</h2>          <div class="profile-detail-item">
+
+                    </div>            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+
+                                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+
+                    <div id="community-detail" class="community-detail"></div>              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+
+                                </svg>
+
+                    <div class="cases-section">            <span>МГУ им. М.В. Ломоносова</span>
+
+                        <h3>Актуальные кейсы</h3>          </div>
+
+                        <div id="cases-carousel" class="cases-carousel"></div>        </div>
+
+                    </div>
+
+                            <button class="btn-primary btn-full">Редактировать профиль</button>
+
+                    <div class="community-feed-section">      </div>
+
+                        <h3>Лента сообщества</h3>
+
+                        <div id="community-posts" class="posts-list"></div>      <div class="profile-stats">
+
+                    </div>        <div class="stat-item">
+
+                </div>          <div class="stat-value">12</div>
+
+            </div>          <div class="stat-label">Сообществ</div>
+
+        </div>        </div>
+
+    </div>        <div class="stat-item">
+
           <div class="stat-value">24</div>
-          <div class="stat-label">Кейсов</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-value">4850</div>
-          <div class="stat-label">Репутация</div>
-        </div>
-      </div>
 
-      <div class="profile-section">
-        <h2 class="section-title">Навыки</h2>
-        <div class="skills-container">
-          <span class="skill-tag">React</span>
-          <span class="skill-tag">TypeScript</span>
-          <span class="skill-tag">Node.js</span>
-          <span class="skill-tag">Python</span>
-          <span class="skill-tag">Figma</span>
-          <span class="skill-tag">PostgreSQL</span>
-        </div>
-      </div>
+    <!-- МОДАЛЬНЫЕ ОКНА -->          <div class="stat-label">Кейсов</div>
 
-      <div class="profile-section">
-        <h2 class="section-title">Достижения</h2>
-        <div class="achievements-container">
-          <div class="achievement-item">
-            <div class="achievement-icon">🏅</div>
-            <div class="achievement-info">
-              <div class="achievement-name">Ранний участник</div>
-              <div class="achievement-desc">Присоединился в первые 100</div>
             </div>
-          </div>
-          <div class="achievement-item">
-            <div class="achievement-icon">📈</div>
-            <div class="achievement-info">
-              <div class="achievement-name">Активный участник</div>
-              <div class="achievement-desc">100+ активностей</div>
-            </div>
-          </div>
-          <div class="achievement-item">
-            <div class="achievement-icon">📖</div>
-            <div class="achievement-info">
-              <div class="achievement-name">Наставник</div>
-              <div class="achievement-desc">Помог 50+ пользователям</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
-  </div>
+    <!-- Модалка создания сообщества -->        <div class="stat-item">
 
-  <!-- Modal: Новый пост -->
-  <div class="modal" id="newPostModal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title">Новый пост</h2>
-        <button class="modal-close" id="closeNewPost">×</button>
-      </div>
+    <div id="create-community-modal" class="modal">          <div class="stat-value">4850</div>
+
+        <div class="modal-content">          <div class="stat-label">Репутация</div>
+
+            <div class="modal-header">        </div>
+
+                <h3>Создать сообщество</h3>      </div>
+
+                <button class="modal-close">&times;</button>
+
+            </div>      <div class="profile-section">
+
+            <form id="create-community-form">        <h2 class="section-title">Навыки</h2>
+
+                <div class="form-group">        <div class="skills-container">
+
+                    <label>Название</label>          <span class="skill-tag">React</span>
+
+                    <input type="text" id="community-name" required>          <span class="skill-tag">TypeScript</span>
+
+                </div>          <span class="skill-tag">Node.js</span>
+
+                <div class="form-group">          <span class="skill-tag">Python</span>
+
+                    <label>Направление</label>          <span class="skill-tag">Figma</span>
+
+                    <select id="community-category" required>          <span class="skill-tag">PostgreSQL</span>
+
+                        <option value="">Выберите направление</option>        </div>
+
+                        <option value="Технологии и IT">Технологии и IT</option>      </div>
+
+                        <option value="Дизайн и творчество">Дизайн и творчество</option>
+
+                        <option value="Маркетинг">Маркетинг</option>      <div class="profile-section">
+
+                        <option value="Бизнес">Бизнес</option>        <h2 class="section-title">Достижения</h2>
+
+                        <option value="Образование">Образование</option>        <div class="achievements-container">
+
+                        <option value="Генная инженерия">Генная инженерия</option>          <div class="achievement-item">
+
+                        <option value="Радиотехника">Радиотехника</option>            <div class="achievement-icon">🏅</div>
+
+                    </select>            <div class="achievement-info">
+
+                </div>              <div class="achievement-name">Ранний участник</div>
+
+                <div class="form-group">              <div class="achievement-desc">Присоединился в первые 100</div>
+
+                    <label>Описание</label>            </div>
+
+                    <textarea id="community-description" rows="4" required></textarea>          </div>
+
+                </div>          <div class="achievement-item">
+
+                <button type="submit" class="btn btn-primary btn-full">Создать</button>            <div class="achievement-icon">📈</div>
+
+            </form>            <div class="achievement-info">
+
+        </div>              <div class="achievement-name">Активный участник</div>
+
+    </div>              <div class="achievement-desc">100+ активностей</div>
+
+            </div>
+
+    <!-- Модалка создания поста -->          </div>
+
+    <div id="create-post-modal" class="modal">          <div class="achievement-item">
+
+        <div class="modal-content">            <div class="achievement-icon">📖</div>
+
+            <div class="modal-header">            <div class="achievement-info">
+
+                <h3>Новый пост</h3>              <div class="achievement-name">Наставник</div>
+
+                <button class="modal-close">&times;</button>              <div class="achievement-desc">Помог 50+ пользователям</div>
+
+            </div>            </div>
+
+            <form id="create-post-form">          </div>
+
+                <div class="form-group">        </div>
+
+                    <label>Текст поста</label>      </div>
+
+                    <textarea id="post-content" rows="4" placeholder="Поделитесь новостями, идеями или задайте вопрос сообществу..." required></textarea>    </div>
+
+                    <div class="char-counter"><span id="post-char-count">0</span> символов</div>
+
+                </div>  </div>
+
+                <div class="form-group">
+
+                    <label>Изображение (необязательно)</label>  <!-- Modal: Новый пост -->
+
+                    <input type="url" id="post-image" placeholder="Введите URL изображения">  <div class="modal" id="newPostModal">
+
+                </div>    <div class="modal-content">
+
+                <button type="submit" class="btn btn-primary btn-full">Опубликовать</button>      <div class="modal-header">
+
+            </form>        <h2 class="modal-title">Новый пост</h2>
+
+        </div>        <button class="modal-close" id="closeNewPost">×</button>
+
+    </div>      </div>
+
       
-      <div class="modal-body">
-        <div class="form-group">
-          <label class="form-label">Сообщество</label>
-          <select class="form-select">
-            <option>Технологии и IT</option>
-            <option>Дизайнеры и творцы</option>
-            <option>Стартапы и бизнес</option>
-          </select>
-        </div>
 
-        <div class="form-group">
-          <label class="form-label">Текст поста</label>
-          <textarea class="form-textarea" rows="6" placeholder="Поделитесь своими мыслями..."></textarea>
-          <div class="form-hint">0 символов</div>
-        </div>
+    <!-- Модалка выбора навыков -->      <div class="modal-body">
 
-        <div class="form-group">
-          <label class="form-label">Изображение (необязательно)</label>
-          <input type="url" class="form-input" placeholder="Введите URL изображения">
-        </div>
-      </div>
+    <div id="skills-modal" class="modal">        <div class="form-group">
 
-      <div class="modal-footer">
-        <button class="btn-secondary" id="cancelNewPost">Отменить</button>
-        <button class="btn-primary">Опубликовать</button>
-      </div>
-    </div>
-  </div>
+        <div class="modal-content">          <label class="form-label">Сообщество</label>
 
-  <!-- Modal: Создание сообщества -->
-  <div class="modal" id="createCommunityModal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title">Создание сообщества</h2>
-        <button class="modal-close" id="closeCreateCommunity">×</button>
-      </div>
-      
-      <div class="modal-body">
-        <div class="form-group">
-          <label class="form-label">Название</label>
-          <input type="text" class="form-input" placeholder="Введите название сообщества">
-        </div>
+            <div class="modal-header">          <select class="form-select">
 
-        <div class="form-group">
-          <label class="form-label">Описание</label>
-          <textarea class="form-textarea" rows="4" placeholder="Расскажите о вашем сообществе..."></textarea>
-        </div>
+                <h3>Выбрать навыки</h3>            <option>Технологии и IT</option>
 
-        <div class="form-group">
-          <label class="form-label">Направление</label>
-          <select class="form-select">
-            <option>Технологии</option>
-            <option>Дизайн</option>
+                <button class="modal-close">&times;</button>            <option>Дизайнеры и творцы</option>
+
+            </div>            <option>Стартапы и бизнес</option>
+
+            <div class="skills-grid" id="skills-grid">          </select>
+
+                <label class="skill-checkbox">        </div>
+
+                    <input type="checkbox" value="React"> React
+
+                </label>        <div class="form-group">
+
+                <label class="skill-checkbox">          <label class="form-label">Текст поста</label>
+
+                    <input type="checkbox" value="TypeScript"> TypeScript          <textarea class="form-textarea" rows="6" placeholder="Поделитесь своими мыслями..."></textarea>
+
+                </label>          <div class="form-hint">0 символов</div>
+
+                <label class="skill-checkbox">        </div>
+
+                    <input type="checkbox" value="Node.js"> Node.js
+
+                </label>        <div class="form-group">
+
+                <label class="skill-checkbox">          <label class="form-label">Изображение (необязательно)</label>
+
+                    <input type="checkbox" value="Python"> Python          <input type="url" class="form-input" placeholder="Введите URL изображения">
+
+                </label>        </div>
+
+                <label class="skill-checkbox">      </div>
+
+                    <input type="checkbox" value="JavaScript"> JavaScript
+
+                </label>      <div class="modal-footer">
+
+                <label class="skill-checkbox">        <button class="btn-secondary" id="cancelNewPost">Отменить</button>
+
+                    <input type="checkbox" value="Figma"> Figma        <button class="btn-primary">Опубликовать</button>
+
+                </label>      </div>
+
+                <label class="skill-checkbox">    </div>
+
+                    <input type="checkbox" value="UI/UX"> UI/UX  </div>
+
+                </label>
+
+                <label class="skill-checkbox">  <!-- Modal: Создание сообщества -->
+
+                    <input type="checkbox" value="PostgreSQL"> PostgreSQL  <div class="modal" id="createCommunityModal">
+
+                </label>    <div class="modal-content">
+
+                <label class="skill-checkbox">      <div class="modal-header">
+
+                    <input type="checkbox" value="Docker"> Docker        <h2 class="modal-title">Создание сообщества</h2>
+
+                </label>        <button class="modal-close" id="closeCreateCommunity">×</button>
+
+                <label class="skill-checkbox">      </div>
+
+                    <input type="checkbox" value="Git"> Git      
+
+                </label>      <div class="modal-body">
+
+            </div>        <div class="form-group">
+
+            <button id="save-skills-btn" class="btn btn-primary btn-full">Сохранить</button>          <label class="form-label">Название</label>
+
+        </div>          <input type="text" class="form-input" placeholder="Введите название сообщества">
+
+    </div>        </div>
+
+
+
+    <!-- Скрипты -->        <div class="form-group">
+
+    <script src="/api.js"></script>          <label class="form-label">Описание</label>
+
+    <script src="/app.js"></script>          <textarea class="form-textarea" rows="4" placeholder="Расскажите о вашем сообществе..."></textarea>
+
+    <script>        </div>
+
+        if ('serviceWorker' in navigator) {
+
+            navigator.serviceWorker.register('/service-worker.js');        <div class="form-group">
+
+        }          <label class="form-label">Направление</label>
+
+    </script>          <select class="form-select">
+
+</body>            <option>Технологии</option>
+
+</html>            <option>Дизайн</option>
+
             <option>Бизнес</option>
             <option>Наука</option>
             <option>Образование</option>
